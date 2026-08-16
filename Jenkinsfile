@@ -13,97 +13,111 @@ pipeline {
 
     post {
 
-    always {
+        always {
 
-        junit 'target/surefire-reports/*.xml'
+            junit 'target/surefire-reports/*.xml'
 
-        script {
+            script {
 
-            def reportResult = powershell(
-                returnStdout: true,
-                script: '''
-                    [xml]$xml = Get-Content "target/surefire-reports/TEST-TestSuite.xml"
+                def reportResult = powershell(
+                    returnStdout: true,
+                    script: '''
+                        $total = 0
+                        $failed = 0
+                        $skipped = 0
+                        $failedTests = @()
 
-                    $total = [int]$xml.testsuite.tests
-                    $failed = [int]$xml.testsuite.failures
-                    $skipped = [int]$xml.testsuite.skipped
-                    $passed = $total - $failed - $skipped
+                        $files = Get-ChildItem "target/surefire-reports/TEST-*.xml"
 
-                    Write-Output "TOTAL=$total"
-                    Write-Output "PASSED=$passed"
-                    Write-Output "FAILED=$failed"
-                    Write-Output "SKIPPED=$skipped"
+                        foreach ($file in $files) {
 
-                    Write-Output "FAILED_TESTS_START"
+                            [xml]$xml = Get-Content $file.FullName
 
-                    $xml.testsuite.testcase | ForEach-Object {
+                            foreach ($suite in $xml.testsuite) {
 
-                        if ($_.failure -or $_.error) {
-                            Write-Output "$($_.classname).$($_.name)"
+                                $total += [int]$suite.tests
+                                $failed += [int]$suite.failures
+                                $skipped += [int]$suite.skipped
+
+                                foreach ($test in $suite.testcase) {
+
+                                    if ($test.failure -or $test.error) {
+                                        $failedTests += "$($test.classname).$($test.name)"
+                                    }
+                                }
+                            }
                         }
+
+                        $passed = $total - $failed - $skipped
+
+                        Write-Output "TOTAL=$total"
+                        Write-Output "PASSED=$passed"
+                        Write-Output "FAILED=$failed"
+                        Write-Output "SKIPPED=$skipped"
+
+                        Write-Output "FAILED_TESTS_START"
+
+                        foreach ($test in $failedTests) {
+                            Write-Output $test
+                        }
+
+                        Write-Output "FAILED_TESTS_END"
+                    '''
+                ).trim()
+
+                def total = 0
+                def passed = 0
+                def failed = 0
+                def skipped = 0
+                def failedTests = []
+
+                def readingFailedTests = false
+
+                reportResult.split("\\r?\\n").each { line ->
+
+                    if (line.startsWith("TOTAL=")) {
+                        total = line.substring(6).toInteger()
                     }
 
-                    Write-Output "FAILED_TESTS_END"
-                '''
-            ).trim()
+                    else if (line.startsWith("PASSED=")) {
+                        passed = line.substring(7).toInteger()
+                    }
 
-            def total = 0
-            def passed = 0
-            def failed = 0
-            def skipped = 0
-            def failedTests = []
+                    else if (line.startsWith("FAILED=")) {
+                        failed = line.substring(7).toInteger()
+                    }
 
-            def readingFailedTests = false
+                    else if (line.startsWith("SKIPPED=")) {
+                        skipped = line.substring(8).toInteger()
+                    }
 
-            reportResult.split("\\r?\\n").each { line ->
+                    else if (line == "FAILED_TESTS_START") {
+                        readingFailedTests = true
+                    }
 
-                if (line.startsWith("TOTAL=")) {
-                    total = line.substring(6).toInteger()
+                    else if (line == "FAILED_TESTS_END") {
+                        readingFailedTests = false
+                    }
+
+                    else if (readingFailedTests && line.trim()) {
+                        failedTests.add(line.trim())
+                    }
                 }
 
-                else if (line.startsWith("PASSED=")) {
-                    passed = line.substring(7).toInteger()
+                def failedTestText = "No failed tests."
+
+                if (failedTests.size() > 0) {
+
+                    failedTestText = failedTests.collectWithIndex {
+                        testName, index ->
+                            "${index + 1}. ${testName}"
+                    }.join("\n")
                 }
 
-                else if (line.startsWith("FAILED=")) {
-                    failed = line.substring(7).toInteger()
-                }
+                emailext(
+                    subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
 
-                else if (line.startsWith("SKIPPED=")) {
-                    skipped = line.substring(8).toInteger()
-                }
-
-                else if (line == "FAILED_TESTS_START") {
-                    readingFailedTests = true
-                }
-
-                else if (line == "FAILED_TESTS_END") {
-                    readingFailedTests = false
-                }
-
-                else if (readingFailedTests && line.trim()) {
-                    failedTests.add(line.trim())
-                }
-            }
-
-            def failedTestText
-
-            if (failedTests) {
-
-                failedTestText = failedTests.collectWithIndex {
-                    testName, index ->
-                        "${index + 1}. ${testName}"
-                }.join("\n")
-
-            } else {
-
-                failedTestText = "No failed tests."
-            }
-
-            emailext(
-                subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
-
-                body: """
+                    body: """
 ================================================
        PLAYWRIGHT JAVA AUTOMATION REPORT
 ================================================
@@ -133,8 +147,9 @@ Branch            : ${GIT_BRANCH ?: 'main'}
 ================================================
 """,
 
-                to: 'neelgaganat97@gmail.com'
-            )
+                    to: 'YOUR_EMAIL@gmail.com'
+                )
+            }
         }
     }
 }
