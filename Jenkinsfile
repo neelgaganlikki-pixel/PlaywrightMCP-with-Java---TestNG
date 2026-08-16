@@ -21,7 +21,7 @@ pipeline {
 
         always {
             emailext(
-                subject: " Playwright Java - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+                subject: "Playwright Java - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
                 body: """
                     <h2>Playwright Java Automation Test Results</h2>
 
