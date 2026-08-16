@@ -1,0 +1,43 @@
+Create and execute the OrangeHRM Login test.
+
+
+Before generating code:
+
+1. Dont use Playwright MCP to inspect the OrangeHRM login page.
+2. Start from a fresh MCP browser session.
+3. Navigate to: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+4. Verify the username field, password field, and Login button.
+5. Verify the locators through MCP.
+6. Do not guess any locator.
+
+Then implement the test using Java 21 + Playwright Java + TestNG + POM.
+
+IMPORTANT:
+
+- Inspect the existing project before creating files.
+- Reuse the existing BaseTest.java.
+- Inspect the existing LoginTest.java.
+- Create or update LoginPage.java inside:
+  src/test/java/com/neel/playwright/pages/
+- Put ALL login locators inside LoginPage.java.
+- Put ALL login page interaction methods inside LoginPage.java.
+- Keep the business flow and assertions inside LoginTest.java.
+- LoginTest.java must extend BaseTest.
+- Do not put application locators directly in LoginTest.java.
+- Do not modify pom.xml.
+- Do not modify BaseTest.java unless absolutely necessary.
+- Do not create duplicate LoginPage or LoginTest classes.
+
+Scenario:
+
+1. Navigate to OrangeHRM login page.
+2. Enter username: Admin.
+3. Enter password: admin123.
+4. Click Login.
+5. Verify that login was successful.
+
+generate the code
+
+
+Do not use Thread.sleep().
+Do not use arbitrary waitForTimeout().

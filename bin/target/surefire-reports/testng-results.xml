@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-08-16T13:59:43 IST" name="Playwright Automation Suite" finished-at="2026-08-16T13:59:53 IST" duration-ms="9776">
+    <groups>
+    </groups>
+    <test started-at="2026-08-16T13:59:43 IST" name="Playwright Tests" finished-at="2026-08-16T13:59:53 IST" duration-ms="9776">
+      <class name="com.neel.playwright.tests.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@619713e5]" started-at="2026-08-16T13:59:43 IST" name="setUp" finished-at="2026-08-16T13:59:49 IST" duration-ms="6186" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyOrangeHRMLoginPage()[pri:0, instance:com.neel.playwright.tests.LoginTest@619713e5]" started-at="2026-08-16T13:59:49 IST" name="verifyOrangeHRMLoginPage" finished-at="2026-08-16T13:59:52 IST" duration-ms="2998" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyOrangeHRMLoginPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.LoginTest@619713e5]" started-at="2026-08-16T13:59:52 IST" name="tearDown" finished-at="2026-08-16T13:59:53 IST" duration-ms="523" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.LoginTest -->
+    </test> <!-- Playwright Tests -->
+  </suite> <!-- Playwright Automation Suite -->
+</testng-results>

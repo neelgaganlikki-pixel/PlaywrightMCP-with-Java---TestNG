@@ -1,0 +1,8 @@
+com\neel\playwright\tests\LogoutTest.class
+com\neel\playwright\tests\LoginTest.class
+com\neel\playwright\pages\LogoutPage.class
+com\neel\playwright\tests\OrangeHRMTest.class
+com\neel\playwright\base\BaseTest.class
+com\neel\playwright\pages\BuzzPage.class
+com\neel\playwright\pages\LoginPage.class
+com\neel\playwright\tests\CreateBuzzPostTest.class

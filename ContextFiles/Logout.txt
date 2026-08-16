@@ -1,0 +1,11 @@
+
+Scenario:
+
+1. Navigate to OrangeHRM login page.
+2. Enter username: Admin.
+3. Enter password: admin123.
+4. Click Login.
+5. Verify that login was successful.
+6. Then Click on Logout .
+
+

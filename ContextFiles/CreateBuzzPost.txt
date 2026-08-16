@@ -1,0 +1,11 @@
+Generate a Playwright test for the following scenario:
+
+1. Login to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login with username "Admin" and password "admin123"
+
+2. Click on the "Buzz" tab in the left navigation. 
+
+3. Click on "Whats's on your mind?" text box and fill it with "Hi, I am Neelgagan".
+
+4. Click on Post button.
+
+5. Verify success Message.
