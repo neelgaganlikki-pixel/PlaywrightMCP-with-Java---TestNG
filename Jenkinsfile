@@ -1,43 +1,32 @@
-pipeline {
+post {
 
-    agent any
+    always {
 
-    stages {
+        junit 'target/surefire-reports/*.xml'
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+        script {
 
-        stage('Run OrangeHRM Tests') {
-            steps {
-                bat 'mvn clean test "-Dsurefire.suiteXmlFiles=testngOrangeHRMTests.xml"'
-            }
-        }
-    }
+            def total = 0
+            def passed = 0
+            def failed = 0
+            def skipped = 0
+            def failedTests = []
 
-    post {
+            def reportFiles = powershell(
+                returnStdout: true,
+                script: '''
+                    Get-ChildItem "target/surefire-reports/TEST-*.xml" |
+                    Select-Object -ExpandProperty FullName
+                '''
+            ).trim()
 
-        always {
+            if (reportFiles) {
 
-            junit 'target/surefire-reports/*.xml'
+                reportFiles.split("\\r?\\n").each { reportFile ->
 
-            script {
-
-                def total = 0
-                def passed = 0
-                def failed = 0
-                def skipped = 0
-                def failedTests = []
-
-                def reportFiles = findFiles(
-                    glob: 'target/surefire-reports/TEST-*.xml'
-                )
-
-                reportFiles.each { reportFile ->
-
-                    def report = new XmlSlurper().parse(reportFile.path)
+                    def report = new XmlSlurper().parse(
+                        new File(reportFile)
+                    )
 
                     def reportTotal = report.@tests.toInteger()
                     def reportFailed = report.@failures.toInteger()
@@ -58,13 +47,14 @@ pipeline {
                         }
                     }
                 }
+            }
 
-                passed = total - failed - skipped
+            passed = total - failed - skipped
 
-                emailext(
-                    subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+            emailext(
+                subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
 
-                    body: """
+                body: """
 ================================================
        PLAYWRIGHT JAVA AUTOMATION REPORT
 ================================================
@@ -98,9 +88,8 @@ Branch            : ${GIT_BRANCH ?: 'main'}
 ================================================
 """,
 
-                    to: 'neelgaganat97@gmail.com'
-                )
-            }
+                to: 'YOUR_EMAIL@gmail.com'
+            )
         }
     }
 }
