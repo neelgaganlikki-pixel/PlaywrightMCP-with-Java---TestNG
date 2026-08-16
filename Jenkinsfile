@@ -13,68 +13,97 @@ pipeline {
 
     post {
 
-        always {
+    always {
 
-            junit 'target/surefire-reports/*.xml'
+        junit 'target/surefire-reports/*.xml'
 
-            script {
+        script {
 
-                def total = 0
-                def passed = 0
-                def failed = 0
-                def skipped = 0
-                def failedTests = []
+            def reportResult = powershell(
+                returnStdout: true,
+                script: '''
+                    [xml]$xml = Get-Content "target/surefire-reports/TEST-TestSuite.xml"
 
-                def reportFiles = findFiles(
-                    glob: 'target/surefire-reports/TEST-*.xml'
-                )
+                    $total = [int]$xml.testsuite.tests
+                    $failed = [int]$xml.testsuite.failures
+                    $skipped = [int]$xml.testsuite.skipped
+                    $passed = $total - $failed - $skipped
 
-                reportFiles.each { reportFile ->
+                    Write-Output "TOTAL=$total"
+                    Write-Output "PASSED=$passed"
+                    Write-Output "FAILED=$failed"
+                    Write-Output "SKIPPED=$skipped"
 
-                    def report = new XmlSlurper().parse(
-                        reportFile.path
-                    )
+                    Write-Output "FAILED_TESTS_START"
 
-                    def reportTotal = report.@tests.toInteger()
-                    def reportFailed = report.@failures.toInteger()
-                    def reportSkipped = report.@skipped.toInteger()
+                    $xml.testsuite.testcase | ForEach-Object {
 
-                    total += reportTotal
-                    failed += reportFailed
-                    skipped += reportSkipped
-
-                    report.testcase.each { testCase ->
-
-                        if (testCase.failure.size() > 0 ||
-                            testCase.error.size() > 0) {
-
-                            failedTests.add(
-                                "${testCase.@classname}.${testCase.@name}"
-                            )
+                        if ($_.failure -or $_.error) {
+                            Write-Output "$($_.classname).$($_.name)"
                         }
                     }
+
+                    Write-Output "FAILED_TESTS_END"
+                '''
+            ).trim()
+
+            def total = 0
+            def passed = 0
+            def failed = 0
+            def skipped = 0
+            def failedTests = []
+
+            def readingFailedTests = false
+
+            reportResult.split("\\r?\\n").each { line ->
+
+                if (line.startsWith("TOTAL=")) {
+                    total = line.substring(6).toInteger()
                 }
 
-                passed = total - failed - skipped
-
-                def failedTestText
-
-                if (failedTests) {
-
-                    failedTestText = failedTests.collectWithIndex {
-                        testName, index ->
-                            "${index + 1}. ${testName}"
-                    }.join("\n")
-
-                } else {
-
-                    failedTestText = "No failed tests."
+                else if (line.startsWith("PASSED=")) {
+                    passed = line.substring(7).toInteger()
                 }
 
-                emailext(
-                    subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+                else if (line.startsWith("FAILED=")) {
+                    failed = line.substring(7).toInteger()
+                }
 
-                    body: """
+                else if (line.startsWith("SKIPPED=")) {
+                    skipped = line.substring(8).toInteger()
+                }
+
+                else if (line == "FAILED_TESTS_START") {
+                    readingFailedTests = true
+                }
+
+                else if (line == "FAILED_TESTS_END") {
+                    readingFailedTests = false
+                }
+
+                else if (readingFailedTests && line.trim()) {
+                    failedTests.add(line.trim())
+                }
+            }
+
+            def failedTestText
+
+            if (failedTests) {
+
+                failedTestText = failedTests.collectWithIndex {
+                    testName, index ->
+                        "${index + 1}. ${testName}"
+                }.join("\n")
+
+            } else {
+
+                failedTestText = "No failed tests."
+            }
+
+            emailext(
+                subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+
+                body: """
 ================================================
        PLAYWRIGHT JAVA AUTOMATION REPORT
 ================================================
@@ -104,9 +133,8 @@ Branch            : ${GIT_BRANCH ?: 'main'}
 ================================================
 """,
 
-                    to: 'neelgaganat97@gmail.com'
-                )
-            }
+                to: 'neelgaganat97@gmail.com'
+            )
         }
     }
 }
