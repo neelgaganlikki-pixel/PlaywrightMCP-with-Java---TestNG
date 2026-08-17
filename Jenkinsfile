@@ -42,6 +42,7 @@ pipeline {
                                 foreach ($test in $suite.testcase) {
 
                                     if ($test.failure -or $test.error) {
+
                                         $failedTests += "$($test.classname).$($test.name)"
                                     }
                                 }
@@ -58,6 +59,7 @@ pipeline {
                         Write-Output "FAILED_TESTS_START"
 
                         foreach ($test in $failedTests) {
+
                             Write-Output $test
                         }
 
@@ -65,56 +67,79 @@ pipeline {
                     '''
                 ).trim()
 
+
                 def total = 0
                 def passed = 0
                 def failed = 0
                 def skipped = 0
+
                 def failedTests = []
 
                 def readingFailedTests = false
 
+
                 reportResult.split("\\r?\\n").each { line ->
 
                     if (line.startsWith("TOTAL=")) {
+
                         total = line.substring(6).toInteger()
                     }
 
                     else if (line.startsWith("PASSED=")) {
+
                         passed = line.substring(7).toInteger()
                     }
 
                     else if (line.startsWith("FAILED=")) {
+
                         failed = line.substring(7).toInteger()
                     }
 
                     else if (line.startsWith("SKIPPED=")) {
+
                         skipped = line.substring(8).toInteger()
                     }
 
                     else if (line == "FAILED_TESTS_START") {
+
                         readingFailedTests = true
                     }
 
                     else if (line == "FAILED_TESTS_END") {
+
                         readingFailedTests = false
                     }
 
                     else if (readingFailedTests && line.trim()) {
+
                         failedTests.add(line.trim())
                     }
                 }
 
+
                 def failedTestText = "No failed tests."
+
 
                 if (failedTests.size() > 0) {
 
-                    failedTestText = failedTests.collectWithIndex {
-                        testName, index ->
-                            "${index + 1}. ${testName}"
-                    }.join("\n")
+                    def counter = 1
+                    def failedTestLines = []
+
+                    failedTests.each { testName ->
+
+                        failedTestLines.add(
+                            "${counter}. ${testName}"
+                        )
+
+                        counter++
+                    }
+
+                    failedTestText = failedTestLines.join("\n")
                 }
 
+
                 emailext(
+
                     subject: "Playwright Java Automation Report - Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
 
                     body: """
@@ -147,7 +172,7 @@ Branch            : ${GIT_BRANCH ?: 'main'}
 ================================================
 """,
 
-                    to: 'YOUR_EMAIL@gmail.com'
+                    to: 'neelgaganat97@gmail.com'
                 )
             }
         }
