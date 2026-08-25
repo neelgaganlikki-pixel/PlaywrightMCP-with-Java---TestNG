@@ -1,0 +1,16 @@
+## Requirement##
+Generate a Playwright test for the following scenario:
+Create a new test class and its page object that identifies the locators for the elements needed to delete a Buzz post in OrangeHRM.
+dont run the test, just generate the code.
+
+DeleteBuzzPostTest.java
+
+The test should:
+
+1. Login to OrangeHRM using the existing LoginPage.
+2. Navigate to the Buzz page.
+3. Locate the exact post created using BuzzPage.java
+4. Open the three-dot/action menu of that post.
+5. Click Delete.
+6. Confirm the deletion.
+7. Verify that the created post is no longer displayed.

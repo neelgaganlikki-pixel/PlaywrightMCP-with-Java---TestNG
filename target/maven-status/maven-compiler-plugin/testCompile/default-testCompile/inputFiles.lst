@@ -1,8 +1,10 @@
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\base\BaseTest.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\pages\BuzzPage.java
+D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\pages\DeleteBuzzPost.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\pages\LoginPage.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\pages\LogoutPage.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\tests\CreateBuzzPostTest.java
+D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\tests\DeleteBuzzPostTest.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\tests\LoginTest.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\tests\LogoutTest.java
 D:\Automation Testing\Playwright-Java\src\test\java\com\neel\playwright\tests\OrangeHRMTest.java

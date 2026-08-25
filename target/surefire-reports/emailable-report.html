@@ -9,12 +9,36 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Playwright Automation Suite</th></tr>
-<tr><td><a href="#t0">Playwright Tests</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">40,995</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Playwright Tests</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">75,833</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Playwright Automation Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Playwright Tests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.neel.playwright.tests.CreateBuzzPostTest</td><td><a href="#m0">verifyCreateBuzzPost</a></td><td rowspan="1">1786898708815</td><td rowspan="1">12598</td></tr><tr class="passedodd"><td rowspan="1">com.neel.playwright.tests.LoginTest</td><td><a href="#m1">verifyOrangeHRMLogin</a></td><td rowspan="1">1786898685990</td><td rowspan="1">8136</td></tr><tr class="passedeven"><td rowspan="1">com.neel.playwright.tests.LogoutTest</td><td><a href="#m2">verifyOrangeHRMLogout</a></td><td rowspan="1">1786898696227</td><td rowspan="1">10503</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Playwright Automation Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Playwright Tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.neel.playwright.tests.DeleteBuzzPostTest</td><td><a href="#m0">verifyDeleteBuzzPost</a></td><td rowspan="1">1787063483971</td><td rowspan="1">24590</td></tr><tr><th colspan="4">Playwright Tests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.neel.playwright.tests.CreateBuzzPostTest</td><td><a href="#m1">verifyCreateBuzzPost</a></td><td rowspan="1">1787063467703</td><td rowspan="1">13646</td></tr><tr class="passedodd"><td rowspan="1">com.neel.playwright.tests.LoginTest</td><td><a href="#m2">verifyOrangeHRMLogin</a></td><td rowspan="1">1787063440576</td><td rowspan="1">7984</td></tr><tr class="passedeven"><td rowspan="1">com.neel.playwright.tests.LogoutTest</td><td><a href="#m3">verifyOrangeHRMLogout</a></td><td rowspan="1">1787063451259</td><td rowspan="1">13931</td></tr></tbody>
 </table>
-<h2>Playwright Tests</h2><h3 id="m0">com.neel.playwright.tests.CreateBuzzPostTest#verifyCreateBuzzPost</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.neel.playwright.tests.LoginTest#verifyOrangeHRMLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.neel.playwright.tests.LogoutTest#verifyOrangeHRMLogout</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Playwright Tests</h2><h3 id="m0">com.neel.playwright.tests.DeleteBuzzPostTest#verifyDeleteBuzzPost</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Failed to delete post: Error {
+  message=&apos;Target page, context or browser has been closed
+  name=&apos;TargetClosedError
+  stack=&apos;TargetClosedError:Target page, context or browser has been closed
+Error
+    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)
+    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)
+    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)
+    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49
+    at Array.map (&lt;anonymous&gt;)
+    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)
+    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)
+    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)
+    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)
+    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)
+    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)
+    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)
+}
+Call log:
+-   - waiting for locator(&quot;//div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//button[contains(., &apos;Delete&apos;)] | //div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//li[contains(., &apos;Delete&apos;)] | //button[contains(., &apos;Delete&apos;)]&quot;) to be visible
+
+	at com.neel.playwright.tests.DeleteBuzzPostTest.verifyDeleteBuzzPost(DeleteBuzzPostTest.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.neel.playwright.tests.CreateBuzzPostTest#verifyCreateBuzzPost</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">com.neel.playwright.tests.LoginTest#verifyOrangeHRMLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.neel.playwright.tests.LogoutTest#verifyOrangeHRMLogout</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

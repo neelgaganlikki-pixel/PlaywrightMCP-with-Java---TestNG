@@ -11,6 +11,7 @@
             <class name="com.neel.playwright.tests.LoginTest"/>
             <class name="com.neel.playwright.tests.LogoutTest"/>
             <class name="com.neel.playwright.tests.CreateBuzzPostTest"/>
+            <class name="com.neel.playwright.tests.DeleteBuzzPostTest"/>
 
         </classes>
 

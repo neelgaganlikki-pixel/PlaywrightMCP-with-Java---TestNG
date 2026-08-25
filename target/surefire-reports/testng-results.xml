@@ -1,53 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-16T22:14:40 IST" name="Playwright Automation Suite" finished-at="2026-08-16T22:15:21 IST" duration-ms="40995">
+  <suite started-at="2026-08-18T20:00:33 IST" name="Playwright Automation Suite" finished-at="2026-08-18T20:01:49 IST" duration-ms="75833">
     <groups>
     </groups>
-    <test started-at="2026-08-16T22:14:40 IST" name="Playwright Tests" finished-at="2026-08-16T22:15:21 IST" duration-ms="40995">
+    <test started-at="2026-08-18T20:00:33 IST" name="Playwright Tests" finished-at="2026-08-18T20:01:49 IST" duration-ms="75833">
       <class name="com.neel.playwright.tests.LoginTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@1ddf84b8]" started-at="2026-08-16T22:14:40 IST" name="setUp" finished-at="2026-08-16T22:14:45 IST" duration-ms="5086" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@7a69b07]" started-at="2026-08-18T20:00:33 IST" name="setUp" finished-at="2026-08-18T20:00:40 IST" duration-ms="7194" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@1ddf84b8]" started-at="2026-08-16T22:14:45 IST" name="verifyOrangeHRMLogin" finished-at="2026-08-16T22:14:54 IST" duration-ms="8136" status="PASS">
+        <test-method signature="verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@7a69b07]" started-at="2026-08-18T20:00:40 IST" name="verifyOrangeHRMLogin" finished-at="2026-08-18T20:00:48 IST" duration-ms="7984" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyOrangeHRMLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.LoginTest@1ddf84b8]" started-at="2026-08-16T22:14:54 IST" name="tearDown" finished-at="2026-08-16T22:14:54 IST" duration-ms="394" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.LoginTest@7a69b07]" started-at="2026-08-18T20:00:48 IST" name="tearDown" finished-at="2026-08-18T20:00:49 IST" duration-ms="576" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.LoginTest -->
       <class name="com.neel.playwright.tests.CreateBuzzPostTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@6e171cd7]" started-at="2026-08-16T22:15:07 IST" name="setUp" finished-at="2026-08-16T22:15:08 IST" duration-ms="1667" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@795cd85e]" started-at="2026-08-18T20:01:05 IST" name="setUp" finished-at="2026-08-18T20:01:07 IST" duration-ms="1853" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@6e171cd7]" started-at="2026-08-16T22:15:08 IST" name="verifyCreateBuzzPost" finished-at="2026-08-16T22:15:21 IST" duration-ms="12598" status="PASS">
+        <test-method signature="verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@795cd85e]" started-at="2026-08-18T20:01:07 IST" name="verifyCreateBuzzPost" finished-at="2026-08-18T20:01:21 IST" duration-ms="13646" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyCreateBuzzPost -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@6e171cd7]" started-at="2026-08-16T22:15:21 IST" name="tearDown" finished-at="2026-08-16T22:15:21 IST" duration-ms="404" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@795cd85e]" started-at="2026-08-18T20:01:21 IST" name="tearDown" finished-at="2026-08-18T20:01:21 IST" duration-ms="646" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.CreateBuzzPostTest -->
       <class name="com.neel.playwright.tests.LogoutTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LogoutTest@498d318c]" started-at="2026-08-16T22:14:54 IST" name="setUp" finished-at="2026-08-16T22:14:56 IST" duration-ms="1701" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LogoutTest@402bba4f]" started-at="2026-08-18T20:00:49 IST" name="setUp" finished-at="2026-08-18T20:00:51 IST" duration-ms="2112" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@498d318c]" started-at="2026-08-16T22:14:56 IST" name="verifyOrangeHRMLogout" finished-at="2026-08-16T22:15:06 IST" duration-ms="10503" status="PASS">
+        <test-method signature="verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@402bba4f]" started-at="2026-08-18T20:00:51 IST" name="verifyOrangeHRMLogout" finished-at="2026-08-18T20:01:05 IST" duration-ms="13931" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyOrangeHRMLogout -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.LogoutTest@498d318c]" started-at="2026-08-16T22:15:06 IST" name="tearDown" finished-at="2026-08-16T22:15:07 IST" duration-ms="413" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.LogoutTest@402bba4f]" started-at="2026-08-18T20:01:05 IST" name="tearDown" finished-at="2026-08-18T20:01:05 IST" duration-ms="655" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.LogoutTest -->
+      <class name="com.neel.playwright.tests.DeleteBuzzPostTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@59fd97a8]" started-at="2026-08-18T20:01:21 IST" name="setUp" finished-at="2026-08-18T20:01:23 IST" duration-ms="1973" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyDeleteBuzzPost()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@59fd97a8]" started-at="2026-08-18T20:01:23 IST" name="verifyDeleteBuzzPost" finished-at="2026-08-18T20:01:48 IST" duration-ms="24590" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Failed to delete post: Error {
+  message='Target page, context or browser has been closed
+  name='TargetClosedError
+  stack='TargetClosedError:Target page, context or browser has been closed
+Error
+    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)
+    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)
+    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)
+    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49
+    at Array.map (<anonymous>)
+    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)
+    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)
+    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)
+    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)
+    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)
+    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)
+    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)
+}
+Call log:
+-   - waiting for locator("//div[contains(@class, 'oxd-dropdown-menu')]//button[contains(., 'Delete')] | //div[contains(@class, 'oxd-dropdown-menu')]//li[contains(., 'Delete')] | //button[contains(., 'Delete')]") to be visible
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Failed to delete post: Error {
+  message='Target page, context or browser has been closed
+  name='TargetClosedError
+  stack='TargetClosedError:Target page, context or browser has been closed
+Error
+    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)
+    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)
+    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)
+    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49
+    at Array.map (<anonymous>)
+    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)
+    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)
+    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)
+    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)
+    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)
+    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)
+    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)
+}
+Call log:
+-   - waiting for locator("//div[contains(@class, 'oxd-dropdown-menu')]//button[contains(., 'Delete')] | //div[contains(@class, 'oxd-dropdown-menu')]//li[contains(., 'Delete')] | //button[contains(., 'Delete')]") to be visible
+
+at org.testng.Assert.fail(Assert.java:111)
+at com.neel.playwright.tests.DeleteBuzzPostTest.verifyDeleteBuzzPost(DeleteBuzzPostTest.java:80)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDeleteBuzzPost -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@59fd97a8]" started-at="2026-08-18T20:01:48 IST" name="tearDown" finished-at="2026-08-18T20:01:49 IST" duration-ms="560" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.DeleteBuzzPostTest -->
     </test> <!-- Playwright Tests -->
   </suite> <!-- Playwright Automation Suite -->
 </testng-results>

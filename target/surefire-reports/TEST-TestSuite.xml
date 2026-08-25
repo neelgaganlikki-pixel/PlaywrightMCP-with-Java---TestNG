@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="TestSuite" time="41.764" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="TestSuite" time="76.842" tests="4" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire15877942755096985043\surefirebooter-20260816221439624_3.jar C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire15877942755096985043 2026-08-16T22-14-39_347-jvmRun1 surefire-20260816221439624_1tmp surefire_0-20260816221439624_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire13392605482324178494\surefirebooter-20260818200031831_3.jar C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire13392605482324178494 2026-08-18T20-00-31_596-jvmRun1 surefire-20260818200031831_1tmp surefire_0-20260818200031831_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Automation Testing\Playwright-Java\target\test-classes;D:\Automation Testing\Playwright-Java\target\classes;C:\Users\NEELGAGAN B R\.m2\repository\com\microsoft\playwright\playwright\1.61.0\playwright-1.61.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\com\google\code\gson\gson\2.14.0\gson-2.14.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\com\google\errorprone\error_prone_annotations\2.48.0\error_prone_annotations-2.48.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\com\microsoft\playwright\driver\1.61.0\driver-1.61.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\com\microsoft\playwright\driver-bundle\1.61.0\driver-bundle-1.61.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\org\testng\testng\7.11.0\testng-7.11.0.jar;C:\Users\NEELGAGAN B R\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\NEELGAGAN B R\.m2\repository\org\jcommander\jcommander\1.83\jcommander-1.83.jar;C:\Users\NEELGAGAN B R\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire15877942755096985043\surefirebooter-20260816221439624_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\NEELGAGAN B R\AppData\Local\Temp\surefire13392605482324178494\surefirebooter-20260818200031831_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.9+7-LTS-338"/>
@@ -58,12 +58,69 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="verifyOrangeHRMLogin" classname="com.neel.playwright.tests.LoginTest" time="8.131">
+  <testcase name="verifyOrangeHRMLogin" classname="com.neel.playwright.tests.LoginTest" time="7.985">
     <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
 SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="verifyOrangeHRMLogout" classname="com.neel.playwright.tests.LogoutTest" time="10.501"/>
-  <testcase name="verifyCreateBuzzPost" classname="com.neel.playwright.tests.CreateBuzzPostTest" time="12.598"/>
+  <testcase name="verifyOrangeHRMLogout" classname="com.neel.playwright.tests.LogoutTest" time="13.933"/>
+  <testcase name="verifyCreateBuzzPost" classname="com.neel.playwright.tests.CreateBuzzPostTest" time="13.647"/>
+  <testcase name="verifyDeleteBuzzPost" classname="com.neel.playwright.tests.DeleteBuzzPostTest" time="24.611">
+    <failure message="Failed to delete post: Error {&#10;  message=&apos;Target page, context or browser has been closed&#10;  name=&apos;TargetClosedError&#10;  stack=&apos;TargetClosedError:Target page, context or browser has been closed&#10;Error&#10;    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)&#10;    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)&#10;    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)&#10;    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49&#10;    at Array.map (&lt;anonymous&gt;)&#10;    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)&#10;    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)&#10;    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)&#10;    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)&#10;    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)&#10;    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)&#10;    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)&#10;}&#10;Call log:&#10;-   - waiting for locator(&quot;//div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//button[contains(., &apos;Delete&apos;)] | //div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//li[contains(., &apos;Delete&apos;)] | //button[contains(., &apos;Delete&apos;)]&quot;) to be visible&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 
+Failed to delete post: Error {
+  message='Target page, context or browser has been closed
+  name='TargetClosedError
+  stack='TargetClosedError:Target page, context or browser has been closed
+Error
+    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)
+    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)
+    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)
+    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49
+    at Array.map (<anonymous>)
+    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)
+    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)
+    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)
+    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)
+    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)
+    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)
+    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)
+}
+Call log:
+-   - waiting for locator("//div[contains(@class, 'oxd-dropdown-menu')]//button[contains(., 'Delete')] | //div[contains(@class, 'oxd-dropdown-menu')]//li[contains(., 'Delete')] | //button[contains(., 'Delete')]") to be visible
+
+	at org.testng.Assert.fail(Assert.java:111)
+	at com.neel.playwright.tests.DeleteBuzzPostTest.verifyDeleteBuzzPost(DeleteBuzzPostTest.java:80)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+  </testcase>
 </testsuite>

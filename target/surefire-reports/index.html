@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Playwright_Automation_Suite" class="navigator-link">
-              <span class="suite-name border-passed">Playwright Automation Suite</span>
+              <span class="suite-name border-failed">Playwright Automation Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,7 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">4 methods, 1 failed,   3 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Playwright_Automation_Suite" class="hide-methods failed suite-Playwright_Automation_Suite"> (hide)</a> <!-- hide-methods failed suite-Playwright_Automation_Suite -->
+                      <a href="#" panel-name="suite-Playwright_Automation_Suite" class="show-methods failed suite-Playwright_Automation_Suite"> (show)</a> <!-- show-methods failed suite-Playwright_Automation_Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Playwright_Automation_Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Playwright_Automation_Suite" title="com.neel.playwright.tests.DeleteBuzzPostTest" class="method navigator-link" hash-for-method="verifyDeleteBuzzPost">verifyDeleteBuzzPost</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Playwright_Automation_Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -128,6 +142,46 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Playwright_Automation_Suite" class="panel Playwright_Automation_Suite">
+          <div class="suite-Playwright_Automation_Suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.neel.playwright.tests.DeleteBuzzPostTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="verifyDeleteBuzzPost">
+                  </a> <!-- verifyDeleteBuzzPost -->
+                  <span class="method-name">verifyDeleteBuzzPost</span>
+                  <div class="stack-trace">java.lang.AssertionError: Failed to delete post: Error {
+  message=&apos;Target page, context or browser has been closed
+  name=&apos;TargetClosedError
+  stack=&apos;TargetClosedError:Target page, context or browser has been closed
+Error
+    at captureRawStack (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3172:17)
+    at LongStandingScope._race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3383:24)
+    at LongStandingScope.race (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3376:21)
+    at C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:49
+    at Array.map (&lt;anonymous&gt;)
+    at LongStandingScope.raceMultiple (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:3373:36)
+    at _Frame.retryWithProgressAndTimeouts (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23097:52)
+    at async _Frame.retryWithProgressAndBackoff (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:23087:16)
+    at async _FrameDispatcher.waitForSelector (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:53422:70)
+    at async _ProgressController.run (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:11762:27)
+    at async _FrameDispatcher._runCommand (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18203:18)
+    at async DispatcherConnection.dispatch (C:\Users\NEELGA~1\AppData\Local\Temp\playwright-java-823225183294847851\package\lib\coreBundle.js:18408:27)
+}
+Call log:
+-   - waiting for locator(&quot;//div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//button[contains(., &apos;Delete&apos;)] | //div[contains(@class, &apos;oxd-dropdown-menu&apos;)]//li[contains(., &apos;Delete&apos;)] | //button[contains(., &apos;Delete&apos;)]&quot;) to be visible
+
+	at com.neel.playwright.tests.DeleteBuzzPostTest.verifyDeleteBuzzPost(DeleteBuzzPostTest.java:80)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+... Removed 30 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Playwright_Automation_Suite-class-failed -->
           <div class="suite-Playwright_Automation_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -188,6 +242,7 @@
       &lt;class name=&quot;com.neel.playwright.tests.LoginTest&quot;/&gt;
       &lt;class name=&quot;com.neel.playwright.tests.LogoutTest&quot;/&gt;
       &lt;class name=&quot;com.neel.playwright.tests.CreateBuzzPostTest&quot;/&gt;
+      &lt;class name=&quot;com.neel.playwright.tests.DeleteBuzzPostTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Playwright Tests --&gt;
 &lt;/suite&gt; &lt;!-- Playwright Automation Suite --&gt;
@@ -201,7 +256,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Playwright Tests (3 classes)</span>
+                <span class="test-name">Playwright Tests (4 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -227,24 +282,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(4);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyCreateBuzzPost')
-data.setCell(0, 2, 'com.neel.playwright.tests.CreateBuzzPostTest')
-data.setCell(0, 3, 12598);
+data.setCell(0, 1, 'verifyDeleteBuzzPost')
+data.setCell(0, 2, 'com.neel.playwright.tests.DeleteBuzzPostTest')
+data.setCell(0, 3, 24590);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'verifyOrangeHRMLogout')
 data.setCell(1, 2, 'com.neel.playwright.tests.LogoutTest')
-data.setCell(1, 3, 10503);
+data.setCell(1, 3, 13931);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'verifyOrangeHRMLogin')
-data.setCell(2, 2, 'com.neel.playwright.tests.LoginTest')
-data.setCell(2, 3, 8136);
+data.setCell(2, 1, 'verifyCreateBuzzPost')
+data.setCell(2, 2, 'com.neel.playwright.tests.CreateBuzzPostTest')
+data.setCell(2, 3, 13646);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'verifyOrangeHRMLogin')
+data.setCell(3, 2, 'com.neel.playwright.tests.LoginTest')
+data.setCell(3, 3, 7984);
 window.suiteTableData['Playwright_Automation_Suite']= { tableData: data, tableDiv: 'times-div-Playwright_Automation_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 31 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Playwright_Automation_Suite">
               </div> <!-- times-div-Playwright_Automation_Suite -->
             </div> <!-- times-div -->
@@ -277,41 +336,58 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyOrangeHRMLogin</span>
-                <span class="method-start">5096 ms</span>
+                <span class="method-start">7197 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">13235 ms</span>
+                <span class="method-start">15185 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.neel.playwright.tests.LogoutTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">13632 ms</span>
+                <span class="method-start">15766 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyOrangeHRMLogout</span>
-                <span class="method-start">15333 ms</span>
+                <span class="method-start">17880 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">25836 ms</span>
+                <span class="method-start">31814 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.neel.playwright.tests.CreateBuzzPostTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">26252 ms</span>
+                <span class="method-start">32471 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyCreateBuzzPost</span>
-                <span class="method-start">27921 ms</span>
+                <span class="method-start">34324 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">40521 ms</span>
+                <span class="method-start">47972 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.neel.playwright.tests.DeleteBuzzPostTest</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">48619 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">verifyDeleteBuzzPost</span>
+                <span class="method-start">50592 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">75200 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
