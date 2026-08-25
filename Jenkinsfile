@@ -8,7 +8,7 @@ pipeline {
 
             steps {
 
-                bat 'mvn clean test "-Dsurefire.suiteXmlFiles=testngOrangeHRMTests.xml"'
+                bat 'mvn clean test "-Dsurefire.suiteXmlFiles=testng.xml"'
 
             }
         }
