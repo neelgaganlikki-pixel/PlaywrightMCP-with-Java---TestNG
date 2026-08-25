@@ -115,7 +115,7 @@ public class OrangeHRMTest extends BaseTest {
         );
     }
 
-     @Test
+     @Test(priority = 3)
     public void verifyDeleteBuzzPost() {
         LoginPage loginPage = new LoginPage(page);
         BuzzPage buzzPage = new BuzzPage(page);

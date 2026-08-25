@@ -79,7 +79,7 @@ public class DeleteBuzzPost {
         page.waitForTimeout(1000);
 
         // Click "Yes, Delete" in the confirmation popup
-        confirmDeleteButton.waitFor(new Locator.WaitForOptions().setTimeout(2000));
+        confirmDeleteButton.waitFor(new Locator.WaitForOptions().setTimeout(1000));
 
         confirmDeleteButton.click();
 

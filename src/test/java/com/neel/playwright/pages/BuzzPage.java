@@ -2,6 +2,7 @@ package com.neel.playwright.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 
 public class BuzzPage {
     public String randomPost;
@@ -17,7 +18,7 @@ public class BuzzPage {
         this.page = page;
         this.buzzTab = page.locator("//a[contains(@href, '/buzz/')]");
         this.whatsOnYourMindTextBox = page.getByPlaceholder("What's on your mind?");
-        this.postButton = page.locator("button.oxd-button--main");
+        this.postButton = page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Post").setExact(true));
         this.successMessage = page.locator(".oxd-toast");
     }
 
