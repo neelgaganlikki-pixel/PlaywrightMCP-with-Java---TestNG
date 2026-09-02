@@ -1,98 +1,128 @@
 package com.neel.playwright.tests;
 
 import com.neel.playwright.base.BaseTest;
-import com.neel.playwright.pages.LoginPage;
 import com.neel.playwright.pages.BuzzPage;
 import com.neel.playwright.pages.DeleteBuzzPost;
+import com.neel.playwright.pages.LoginPage;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DeleteBuzzPostTest extends BaseTest {
 
-@Test
-public void verifyDeleteBuzzPost() {
-LoginPage loginPage = new LoginPage(page);
-BuzzPage buzzPage = new BuzzPage(page);
-DeleteBuzzPost deleteBuzzPost = new DeleteBuzzPost(page);
+    @Test
+    public void verifyDeleteBuzzPost() {
 
-// Navigate to login page
-loginPage.navigateToLoginPage();
+        LoginPage loginPage =
+                new LoginPage(page);
 
-// Verify login page is displayed
-Assert.assertTrue(
-        loginPage.isLoginPageDisplayed(),
-        "Login page was not loaded"
-);
+        BuzzPage buzzPage =
+                new BuzzPage(page);
 
-// Enter credentials and login
-loginPage.enterUsername("Admin");
-loginPage.enterPassword("admin123");
-loginPage.clickLogin();
+        DeleteBuzzPost deleteBuzzPost =
+                new DeleteBuzzPost(page);
 
-// Verify successful login by checking dashboard page
-Assert.assertTrue(loginPage.isDashboardPageDisplayed(),
-        "Login was not successful - dashboard page not displayed"
-);
+        // Navigate to login page
+        loginPage.navigateToLoginPage();
 
-// Navigate to Buzz page
-buzzPage.navigateToBuzzPage();
+        // Verify login page
+        Assert.assertTrue(
+                loginPage.isLoginPageDisplayed(),
+                "Login page was not loaded"
+        );
 
-// Verify Buzz page is displayed
-Assert.assertTrue( buzzPage.isBuzzPageDisplayed(),
-        "Buzz page was not loaded"
-);
+        // Login
+        loginPage.enterUsername("Admin");
+        loginPage.enterPassword("admin123");
+        loginPage.clickLogin();
 
-// Click on "What's on your mind?" text box
-buzzPage.clickWhatsOnYourMindTextBox();
+        // Verify dashboard
+        Assert.assertTrue(
+                loginPage.isDashboardPageDisplayed(),
+                "Login was not successful - dashboard page not displayed"
+        );
 
-// Enter a specific buzz post text (to track for deletion)
-String postText = "Test Post for Deletion - " + System.currentTimeMillis();
-buzzPage.enterBuzzPost(postText);
+        // Navigate to Buzz page
+        buzzPage.navigateToBuzzPage();
 
-// Click Post button
-buzzPage.clickPostButton();
-page.waitForSelector("//div[contains(@class, 'oxd-toast')]");
+        // Verify Buzz page
+        Assert.assertTrue(
+                buzzPage.isBuzzPageDisplayed(),
+                "Buzz page was not loaded"
+        );
 
-Assert.assertTrue(
-buzzPage.isSuccessMessageDisplayed(),
-"Success message was not displayed after posting"
-);
+        // Open post box
+        buzzPage.clickWhatsOnYourMindTextBox();
 
-Assert.assertTrue(
-deleteBuzzPost.isPostDisplayed(postText),
-"Created post is not displayed before deletion"
-);
+        // Create unique post
+        String postText =
+                "Test Post for Deletion - "
+                        + System.currentTimeMillis();
 
-// Wait for success message to appear
-page.waitForSelector(
-        "//div[contains(@class, 'oxd-toast')]",
-        new com.microsoft.playwright.Page.WaitForSelectorOptions()
-                .setTimeout(5000)
-);
+        buzzPage.enterBuzzPost(postText);
 
-// Verify success message is displayed
-Assert.assertTrue(
-        buzzPage.isSuccessMessageDisplayed(),
-        "Success message was not displayed after posting"
-);
+        // Click Post
+        buzzPage.clickPostButton();
 
-// Verify the post is displayed before deletion
-Assert.assertTrue(
-        deleteBuzzPost.isPostDisplayed(postText),
-        "Created post is not displayed before deletion"
-);
+        // Verify post creation
+        Assert.assertTrue(
+                buzzPage.isSuccessMessageDisplayed(),
+                "Success message was not displayed after posting"
+        );
 
-// Delete the specific post by its text
-try {
-        deleteBuzzPost.deletePostByText(postText);
-} catch (Exception e) {
-        Assert.fail("Failed to delete post: " + e.getMessage());
-}
+        // Wait for newly created post to appear
+        boolean postDisplayed = false;
 
-// Verify the post is no longer displayed
-Assert.assertFalse(
-        deleteBuzzPost.isPostDisplayed(postText),
-        "Post is still displayed after deletion"
-);
-}
+        for (int attempt = 0; attempt < 10; attempt++) {
+
+            if (deleteBuzzPost.isPostDisplayed(postText)) {
+
+                postDisplayed = true;
+                break;
+            }
+
+            page.waitForTimeout(1000);
+        }
+
+        Assert.assertTrue(
+                postDisplayed,
+                "Created post is not displayed before deletion: "
+                        + postText
+        );
+
+        // Delete specific post
+        try {
+
+            deleteBuzzPost.deletePostByText(postText);
+
+        } catch (Exception e) {
+
+            Assert.fail(
+                    "Failed to delete post: "
+                            + postText
+                            + ". Reason: "
+                            + e.getMessage()
+            );
+        }
+
+        // Verify post is no longer displayed
+        boolean postStillDisplayed = true;
+
+        for (int attempt = 0; attempt < 10; attempt++) {
+
+            if (!deleteBuzzPost.isPostDisplayed(postText)) {
+
+                postStillDisplayed = false;
+                break;
+            }
+
+            page.waitForTimeout(1000);
+        }
+
+        Assert.assertFalse(
+                postStillDisplayed,
+                "Post is still displayed after deletion: "
+                        + postText
+        );
+    }
 }

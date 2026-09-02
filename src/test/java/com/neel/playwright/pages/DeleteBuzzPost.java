@@ -2,6 +2,7 @@ package com.neel.playwright.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class DeleteBuzzPost {
 
@@ -9,117 +10,125 @@ public class DeleteBuzzPost {
 
     // Locators
     private final Locator postContainer;
-    private final Locator actionMenuButton;
     private final Locator deleteOption;
     private final Locator confirmDeleteButton;
 
     public DeleteBuzzPost(Page page) {
+
         this.page = page;
-        // Post container locator - will be parameterized with post text
-        this.postContainer = page.locator(
-                "//div[contains(@class,'oxd-sheet') and contains(@class,'orangehrm-buzz')]");
-        // Action menu button (three dots)
-        this.actionMenuButton = page.locator(
-                "button[aria-label='More actions'], button:has(i.oxd-icon.bi-three-dots-vertical), button:has(i.bi-three-dots-vertical)");
-        // Delete option in dropdown
-        this.deleteOption = page.getByText("Delete Post", new Page.GetByTextOptions().setExact(true));
-        // Confirm delete button
-        this.confirmDeleteButton = page.getByText("Yes, Delete", new Page.GetByTextOptions().setExact(true));
+
+        postContainer =
+                page.locator(
+                        "//div[contains(@class,'oxd-sheet') "
+                                + "and contains(@class,'orangehrm-buzz')]"
+                );
+
+        deleteOption =
+                page.getByText(
+                        "Delete Post",
+                        new Page.GetByTextOptions()
+                                .setExact(true)
+                );
+
+        confirmDeleteButton =
+                page.getByText(
+                        "Yes, Delete",
+                        new Page.GetByTextOptions()
+                                .setExact(true)
+                );
     }
 
-    /**
-     * Deletes a specific post by its text content.
-     * Finds the post, opens its action menu (three dots), clicks Delete, and
-     * confirms.
-     */
-    public void deletePostByText(String postText) throws Exception {
-        // Find the post container that contains the specific text
-        Locator targetPost = postContainer
-                .filter(new Locator.FilterOptions().setHasText(postText)).first();
+    public void deletePostByText(String postText)
+            throws Exception {
 
-        // Wait for the post to be visible
-        targetPost.waitFor(new Locator.WaitForOptions().setTimeout(5000));
+        Locator targetPost =
+                postContainer
+                        .filter(
+                                new Locator.FilterOptions()
+                                        .setHasText(postText)
+                        )
+                        .first();
 
-        // Scroll to make sure it's visible
+        targetPost.waitFor(
+                new Locator.WaitForOptions()
+                        .setTimeout(15000)
+        );
+
         targetPost.scrollIntoViewIfNeeded();
-        page.waitForTimeout(1000);
 
-        // Hover over post to reveal action buttons
         targetPost.hover();
 
-        page.waitForTimeout(1000);
+        Locator postActionMenu =
+                targetPost.locator(
+                        "button.oxd-icon-button:has(i.bi-three-dots)"
+                ).first();
 
-        // Find the 3-dot action button ONLY inside the specific post
-        Locator postActionMenu = targetPost.locator("button.oxd-icon-button:has(i.bi-three-dots)").first();
-
-        // If 3-dot button is not found, use the last button inside the target post
         if (!postActionMenu.isVisible()) {
 
-            Locator buttons = targetPost.locator("button");
+            Locator buttons =
+                    targetPost.locator("button");
 
             int buttonCount = buttons.count();
 
-            if (buttonCount > 0) {
-                postActionMenu = buttons.nth(buttonCount - 1);
-            } else {
+            if (buttonCount == 0) {
+
                 throw new Exception(
-                        "No action button found for post: " + postText);
+                        "No action button found for post: "
+                                + postText
+                );
             }
+
+            postActionMenu =
+                    buttons.nth(buttonCount - 1);
         }
 
-        // Click the 3-dot menu
         postActionMenu.click();
-        page.waitForTimeout(1000);
 
-        // Click Delete from the dropdown
-        // deleteOption.waitFor(new Locator.WaitForOptions().setTimeout(5000));
+        deleteOption.waitFor(
+                new Locator.WaitForOptions()
+                        .setTimeout(10000)
+        );
 
         deleteOption.click();
 
-        page.waitForTimeout(1000);
-
-        // Click "Yes, Delete" in the confirmation popup
-        confirmDeleteButton.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        confirmDeleteButton.waitFor(
+                new Locator.WaitForOptions()
+                        .setTimeout(10000)
+        );
 
         confirmDeleteButton.click();
 
-        page.waitForTimeout(1000);
+        try {
+
+            targetPost.waitFor(
+                    new Locator.WaitForOptions()
+                            .setState(
+                                    WaitForSelectorState.DETACHED
+                            )
+                            .setTimeout(15000)
+            );
+
+        } catch (Exception ignored) {
+            // Allow the application time to update the feed.
+        }
     }
 
-    /**
-     * Verifies if a post with the given text is displayed on the page.
-     */
     public boolean isPostDisplayed(String postText) {
+
         try {
-            page.waitForTimeout(500);
 
-            // Try multiple ways to find the post
-            Locator post = null;
+            Locator post =
+                    postContainer
+                            .filter(
+                                    new Locator.FilterOptions()
+                                            .setHasText(postText)
+                            )
+                            .first();
 
-            // First try: direct text match
-            try {
-                post = page.locator("//*[contains(text(), '" + postText + "')]").first();
-                post.waitFor(new Locator.WaitForOptions().setTimeout(1000));
-                if (post.isVisible()) {
-                    return true;
-                }
-            } catch (Exception e) {
-                // Continue to next attempt
-            }
+            return post.isVisible();
 
-            // Second try: partial text match in div
-            try {
-                post = page.locator("//div[contains(., '" + postText + "')]").first();
-                post.waitFor(new Locator.WaitForOptions().setTimeout(1000));
-                if (post.isVisible()) {
-                    return true;
-                }
-            } catch (Exception e) {
-                // Post not found
-            }
-
-            return false;
         } catch (Exception e) {
+
             return false;
         }
     }
