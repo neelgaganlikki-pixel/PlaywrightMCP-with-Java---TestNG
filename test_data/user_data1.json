@@ -1,0 +1,33 @@
+{
+  "photo": {
+    "path": "test_data/employee_photo.png"
+  },
+  "employee": {
+    "date_of_birth": "1977-21-12",
+    "last_name": "Taylor",
+    "first_name": "Robert",
+    "gender": "Male",
+    "nationality": "San Marinese",
+    "driver_license_number": "ZJ9VRQV5NM",
+    "middle_name": "William",
+    "license_expiry_date": "2028-22-02",
+    "other_id": "I26SCZ75",
+    "marital_status": "Single",
+    "employee_id": "8061"
+  },
+  "custom_fields": {
+    "test_field": "V5XRMLGP",
+    "blood_type": "Unavailable in current OrangeHRM UI"
+  },
+  "employee_login": {
+    "create_login_details": true,
+    "status": "Enabled",
+    "username": "JohnKing0442",
+    "confirm_password": "JkAuto2026X9m4",
+    "password": "JkAuto2026X9m4"
+  },
+  "login": {
+    "password": "admin123",
+    "username": "Admin"
+  }
+}

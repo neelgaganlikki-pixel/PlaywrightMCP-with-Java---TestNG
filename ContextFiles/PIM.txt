@@ -1,0 +1,1761 @@
+You are working on my existing OrangeHRM automation project.
+
+Repository:
+PlaywrightMCP-with-Java---TestNG
+
+Technology:
+
+* Java
+* Playwright for Java
+* TestNG
+* Maven
+* Page Object Model (POM)
+* REST Assured, if already present in the existing project
+* Allure, if already present
+* Jenkins
+* Chromium
+* Windows
+* Headless execution
+
+============================================================
+IMPORTANT — FIRST INSPECT THE EXISTING PROJECT
+==============================================
+
+Before making ANY changes, inspect the complete existing Java project structure.
+
+Understand and preserve the existing implementation for:
+
+* pom.xml
+* testng.xml, if present
+* src/main/java
+* src/test/java
+* config/
+* ConfigReader
+* existing page objects
+* existing test classes
+* existing BaseTest/BasePage classes
+* existing browser/context/page setup
+* existing Playwright configuration
+* existing TestNG listeners
+* existing logging
+* screenshots
+* videos
+* traces
+* Allure reporting
+* existing reporting
+* Jenkinsfile
+* existing PIM functionality, if present
+* existing login functionality
+* existing utilities
+* existing test-data utilities
+* existing JSON utilities
+
+Do NOT create duplicate functionality if it already exists.
+
+Do NOT remove or modify working tests unnecessarily.
+
+Do NOT change the existing architecture.
+
+Follow the existing project's Java coding style and naming conventions.
+
+Reuse existing utilities, base classes, fixtures/hooks, page objects, and configuration wherever appropriate.
+
+============================================================
+OBJECTIVE
+=========
+
+Create a complete end-to-end OrangeHRM PIM Employee automation using:
+
+Java + Playwright + TestNG + POM.
+
+The test must:
+
+1. Login to OrangeHRM as Admin.
+
+2. Navigate to PIM.
+
+3. Open Employee List.
+
+4. Open Add Employee.
+
+5. Generate random employee data.
+
+6. Store the generated data in:
+
+   test_data/user_data1.json
+
+7. Upload an employee photo from:
+
+   test_data/employee_photo.png
+
+8. Fill the Add Employee form.
+
+9. Enable Create Login Details.
+
+10. Create login credentials for the employee.
+
+11. Save the employee.
+
+12. Verify the employee creation SUCCESS TOAST.
+
+13. Fill the employee's Personal Details.
+
+14. Fill Custom Fields.
+
+15. Save Personal Details.
+
+16. Verify the Personal Details SUCCESS TOAST.
+
+17. Go back to Employee List.
+
+18. Search for the exact employee created by this test.
+
+19. Verify the employee exists and the data is correct.
+
+20. Delete the exact employee.
+
+21. Verify the DELETE SUCCESS TOAST.
+
+22. Search again.
+
+23. Verify the employee no longer exists.
+
+The final flow must be:
+
+LOGIN
+↓
+PIM
+↓
+EMPLOYEE LIST
+↓
+ADD EMPLOYEE
+↓
+GENERATE DATA
+↓
+STORE DATA IN user_data1.json
+↓
+UPLOAD PHOTO
+↓
+CREATE EMPLOYEE
+↓
+VERIFY CREATE TOAST
+↓
+PERSONAL DETAILS
+↓
+FILL PERSONAL DETAILS
+↓
+FILL CUSTOM FIELDS
+↓
+SAVE
+↓
+VERIFY UPDATE TOAST
+↓
+EMPLOYEE LIST
+↓
+SEARCH EMPLOYEE
+↓
+VERIFY EMPLOYEE
+↓
+DELETE EMPLOYEE
+↓
+VERIFY DELETE TOAST
+↓
+SEARCH AGAIN
+↓
+VERIFY EMPLOYEE DOES NOT EXIST
+
+============================================================
+ADMIN LOGIN
+===========
+
+Use these credentials to log into OrangeHRM:
+
+Username:
+Admin
+
+Password:
+admin123
+
+These are the OrangeHRM administrator credentials.
+
+Do NOT confuse them with the newly created employee's login credentials.
+
+Reuse the existing Java login page object, BaseTest setup, fixture, or authentication implementation if the project already has one.
+
+Do NOT create a second login implementation.
+
+============================================================
+EMPLOYEE LOGIN DETAILS
+======================
+
+The newly created employee must have:
+
+Create Login Details:
+Enabled
+
+Username:
+JohnKing0442
+
+Status:
+Enabled
+
+Password:
+JkAuto2026X9m4
+
+Confirm Password:
+EXACTLY THE SAME AS PASSWORD
+
+IMPORTANT:
+
+The password must be stored in ONE Java variable.
+
+Example concept:
+
+String password = "JkAuto2026X9m4";
+
+Use the same variable for:
+
+Password
+Confirm Password
+
+Do NOT generate a separate Confirm Password.
+
+Do NOT log the password in the console.
+
+Do NOT print the password through System.out.println(), logger statements, TestNG reports, or Allure attachments.
+
+============================================================
+EMPLOYEE NAME DATA
+==================
+
+First Name:
+RANDOM
+
+Middle Name:
+RANDOM
+
+Last Name:
+RANDOM
+
+Do NOT hardcode:
+
+John
+Doe
+King
+
+Generate realistic fictional test names at runtime.
+
+The generated names must contain alphabetic characters only.
+
+The generated values must be stored in memory and reused throughout the complete test.
+
+Use a Java runtime test-data object.
+
+For example, the project may use:
+
+EmployeeTestData
+
+or an equivalent existing data model.
+
+Do NOT create a new data model if the project already contains an appropriate one.
+
+============================================================
+GENDER REQUIREMENT
+==================
+
+Gender must NOT be independently randomized.
+
+Gender must correspond consistently to the generated fictional FIRST NAME.
+
+Use a controlled synthetic test-data name pool/category.
+
+For example:
+
+Male first-name pool:
+
+David
+Robert
+Michael
+James
+Daniel
+
+Female first-name pool:
+
+Emily
+Sarah
+Jessica
+Laura
+Emma
+
+If a male name is generated:
+
+Gender = Male
+
+If a female name is generated:
+
+Gender = Female
+
+Do NOT attempt to determine the gender of a real person.
+
+This is purely controlled synthetic test data.
+
+The selected Gender must be stored in the runtime test-data object and reused later.
+
+Example concept:
+
+NameAndGender selectedName = testDataGenerator.generateName();
+
+String firstName = selectedName.getFirstName();
+String gender = selectedName.getGender();
+
+The gender must be derived from the SAME controlled name category that produced the first name.
+
+Do NOT randomly generate first name and gender independently.
+
+============================================================
+EMPLOYEE ID
+===========
+
+Generate a UNIQUE 4-digit Employee ID.
+
+Example:
+
+5831
+
+Requirements:
+
+* exactly 4 digits
+* must not be regenerated during the test
+* must be stored in the runtime test-data object
+* must be stored in user_data1.json
+* the exact same Employee ID must be used for:
+
+  * employee creation
+  * Personal Details
+  * verification
+  * search
+  * deletion
+
+Avoid collisions with existing employees where reasonably possible.
+
+Do not generate a new Employee ID during verification or deletion.
+
+The Employee ID must remain immutable for the entire test execution.
+
+============================================================
+OTHER EMPLOYEE DATA
+===================
+
+Generate the following at runtime:
+
+Other ID:
+Random valid alphanumeric value
+
+Driver's License Number:
+Random valid alphanumeric value
+
+License Expiry Date:
+Random valid FUTURE date
+
+Date of Birth:
+Random valid PAST date
+
+Test_Field:
+Random valid alphanumeric value
+
+All generated values must be valid for the OrangeHRM UI.
+
+Do not generate invalid values merely to satisfy randomization.
+
+============================================================
+DROPDOWN REQUIREMENT — VERY IMPORTANT
+=====================================
+
+DO NOT hardcode dropdown values blindly.
+
+The automation must inspect the actual OrangeHRM dropdown options available in the UI.
+
+This applies to:
+
+* Nationality
+* Marital Status
+* Blood Type
+* Gender, if implemented as a dropdown
+* any other dropdown used by this test
+
+For every dropdown that is marked RANDOM:
+
+1. Open the dropdown.
+
+2. Parse/read all available options from the DOM.
+
+3. Remove placeholder options such as:
+
+   -- Select --
+
+4. Verify that valid options exist.
+
+5. Select one valid option.
+
+6. Store the selected option in the runtime test-data object.
+
+7. Reuse the exact same selected value for later verification.
+
+Do NOT invent dropdown values.
+
+Do NOT assume the dropdown contains a specific value.
+
+Do NOT select a value unless it actually exists in the current OrangeHRM UI.
+
+Create reusable Java Page Object functionality for reading dropdown options if appropriate.
+
+For example, a reusable method can conceptually:
+
+* open dropdown
+* collect option texts
+* remove placeholders
+* return available options
+* select a valid option
+
+Use Playwright Java Locator APIs.
+
+Follow the existing project's coding style.
+
+============================================================
+NATIONALITY
+===========
+
+Nationality must be selected dynamically from the actual options available in the OrangeHRM dropdown.
+
+The test should:
+
+* open Nationality dropdown
+* parse available options
+* ignore placeholder
+* randomly select one valid option
+* store the selected value
+* use that same value throughout the test
+
+Do NOT hardcode a nationality.
+
+The test must work with the options currently available in the OrangeHRM UI.
+
+============================================================
+MARITAL STATUS
+==============
+
+Marital Status must be selected dynamically from the actual options available in the OrangeHRM dropdown.
+
+The test should:
+
+* open dropdown
+* parse options
+* ignore placeholder
+* randomly select one valid option
+* store the selected value
+* reuse it for verification
+
+Do NOT assume that a specific marital status exists.
+
+============================================================
+BLOOD TYPE
+==========
+
+Blood Type must be selected dynamically from the actual options available in the OrangeHRM dropdown.
+
+The test should:
+
+* open dropdown
+* parse options
+* ignore placeholder
+* randomly select one valid option
+* store the selected value
+* reuse it for verification
+
+Do NOT invent blood-type values.
+
+Do NOT assume a particular blood type exists in the current UI.
+
+============================================================
+DATE REQUIREMENTS
+=================
+
+License Expiry Date:
+
+* must be valid
+* must be in the future
+* must match the date format accepted by OrangeHRM
+
+Date of Birth:
+
+* must be valid
+* must be in the past
+* must match the date format accepted by OrangeHRM
+
+Do not generate invalid dates.
+
+Do not generate dates that OrangeHRM cannot accept.
+
+Use Java date/time APIs such as:
+
+java.time.LocalDate
+
+and existing project date utilities if available.
+
+Do not use deprecated Date APIs unless the existing framework specifically requires them.
+
+Generate dates in the format accepted by the actual OrangeHRM UI.
+
+============================================================
+EMPLOYEE PHOTO
+==============
+
+Use a REAL image file.
+
+Expected location:
+
+test_data/employee_photo.png
+
+The photo must NOT be a screenshot of the OrangeHRM application.
+
+Upload the image during:
+
+PIM
+→ Employee List
+→ Add Employee
+
+Inspect the actual DOM and identify the file input used by OrangeHRM.
+
+Use Playwright Java file upload functionality such as:
+
+locator.setInputFiles(Paths.get(photoPath));
+
+or the equivalent Playwright Java API required by the existing project.
+
+Do NOT automate the Windows file chooser using mouse coordinates.
+
+Do NOT use Robot/AWT to interact with the Windows file chooser if Playwright can directly upload the file.
+
+The JSON file should contain only the relative photo path.
+
+Example:
+
+"photo": {
+"path": "test_data/employee_photo.png"
+}
+
+Do NOT store the image as Base64 in JSON.
+
+============================================================
+JSON STORAGE — VERY IMPORTANT
+=============================
+
+Create:
+
+test_data/user_data1.json
+
+IMPORTANT:
+
+user_data1.json is an OUTPUT/STORAGE file.
+
+It is NOT the source of random employee values.
+
+Do NOT read "RANDOM" values from JSON and then generate them.
+
+The correct flow is:
+
+Java
+↓
+Generate random values
+↓
+Store values in memory
+↓
+Write ACTUAL values to user_data1.json
+↓
+Use the same runtime values throughout the test
+
+The JSON must contain the ACTUAL values used in that execution.
+
+NEVER write:
+
+"first_name": "RANDOM"
+
+NEVER write:
+
+"employee_id": "GENERATE_4_DIGIT"
+
+NEVER write:
+
+"gender": "DERIVED_FROM_FIRST_NAME"
+
+Instead, after execution it should contain real values.
+
+Example:
+
+{
+"login": {
+"username": "Admin",
+"password": "admin123"
+},
+"employee": {
+"first_name": "David",
+"middle_name": "Michael",
+"last_name": "Wilson",
+"employee_id": "5831",
+"gender": "Male",
+"other_id": "X7K29P",
+"driver_license_number": "DL84921",
+"license_expiry_date": "20-12-2030",
+"nationality": "Cambodian",
+"marital_status": "Single",
+"date_of_birth": "14-06-1998"
+},
+"employee_login": {
+"create_login_details": true,
+"username": "JohnKing0442",
+"status": "Enabled",
+"password": "JkAuto2026X9m4",
+"confirm_password": "JkAuto2026X9m4"
+},
+"custom_fields": {
+"blood_type": "O+",
+"test_field": "TestX82"
+},
+"photo": {
+"path": "test_data/employee_photo.png"
+}
+}
+
+The actual values in the JSON will be different because employee data is generated dynamically.
+
+IMPORTANT SECURITY REQUIREMENT:
+
+Because this JSON contains test credentials, follow the existing project convention for handling sensitive test data.
+
+Do not print the password to the console or reports.
+
+============================================================
+JSON WRITE BEHAVIOR
+===================
+
+Implement a clean Java utility/class for writing the generated test data.
+
+Reuse an existing JSON utility if the project already has one.
+
+If a JSON library such as Jackson is already present, reuse it.
+
+Do NOT introduce another JSON library unnecessarily.
+
+The function must:
+
+* create test_data directory if necessary
+* create/update user_data1.json
+* write valid JSON
+* write the complete actual test data
+* overwrite the previous execution's employee data
+* not write placeholders
+* preserve valid JSON formatting
+
+The generated values must first exist in the runtime test-data object.
+
+Then write that object to user_data1.json.
+
+Do NOT retrieve the random values from the JSON during the same execution.
+
+The JSON is a storage/output artifact, not the source of runtime test data.
+
+============================================================
+RUNTIME DATA CONSISTENCY
+========================
+
+Generate the values ONCE.
+
+Store them in one runtime test-data structure.
+
+For example:
+
+first_name
+middle_name
+last_name
+employee_id
+gender
+other_id
+driver_license_number
+license_expiry_date
+nationality
+marital_status
+date_of_birth
+blood_type
+test_field
+
+Once generated, these values must NEVER be regenerated during:
+
+* employee creation
+* Personal Details
+* verification
+* search
+* deletion
+* final verification
+
+The exact same values must be reused.
+
+The runtime test-data object is the single source of truth during the test execution.
+
+user_data1.json is only the persisted output of that runtime object.
+
+============================================================
+ADD EMPLOYEE PAGE
+=================
+
+Navigate:
+
+PIM
+→ Employee List
+→ Add Employee
+
+Fill:
+
+First Name:
+generated first name
+
+Middle Name:
+generated middle name
+
+Last Name:
+generated last name
+
+Employee ID:
+generated 4-digit ID
+
+Upload:
+
+test_data/employee_photo.png
+
+Enable:
+
+Create Login Details
+
+Then fill:
+
+Username:
+JohnKing0442
+
+Status:
+Enabled
+
+Password:
+JkAuto2026X9m4
+
+Confirm Password:
+same password variable
+
+Click:
+
+Save
+
+============================================================
+CREATION TOAST VERIFICATION
+===========================
+
+Immediately after clicking Save:
+
+1. Wait for the OrangeHRM success toast.
+2. Verify that it is visible.
+3. Verify that it indicates successful employee creation.
+4. Do NOT continue until the creation success toast has been verified.
+
+The test must NOT consider creation successful merely because Save was clicked.
+
+Inspect the actual OrangeHRM DOM to determine the correct toast locator and text.
+
+Use Playwright Java assertions such as:
+
+assertThat(locator).isVisible();
+
+and/or appropriate text assertions.
+
+Do NOT use:
+
+Thread.sleep()
+
+Do NOT use arbitrary waits.
+
+Do NOT use page.waitForTimeout().
+
+The toast must be explicitly verified before proceeding.
+
+============================================================
+PERSONAL DETAILS
+================
+
+After successful employee creation and creation toast verification:
+
+Fill the employee Personal Details.
+
+Employee ID:
+Use the SAME generated Employee ID.
+
+Other ID:
+Use generated random value.
+
+Driver's License Number:
+Use generated random value.
+
+License Expiry Date:
+Use generated future date.
+
+Nationality:
+Use dynamically discovered valid dropdown option.
+
+Marital Status:
+Use dynamically discovered valid dropdown option.
+
+Date of Birth:
+Use generated valid past date.
+
+Gender:
+Use the gender derived from the generated first-name category.
+
+Do NOT generate any new values at this stage.
+
+============================================================
+CUSTOM FIELDS
+=============
+
+Fill:
+
+Blood Type:
+Use dynamically discovered valid dropdown option.
+
+Test_Field:
+Use generated random value.
+
+Do NOT regenerate Test_Field.
+
+Do NOT hardcode Blood Type.
+
+============================================================
+PERSONAL DETAILS SAVE
+=====================
+
+Click the appropriate Personal Details Save button.
+
+Immediately:
+
+1. Wait for success toast.
+2. Verify toast visibility.
+3. Verify that it indicates successful update/save.
+4. Only then continue.
+
+Do NOT use arbitrary sleeps.
+
+Use Playwright Java assertions.
+
+The test must not continue merely because the Save button was clicked.
+
+============================================================
+EMPLOYEE VERIFICATION
+=====================
+
+Navigate to:
+
+PIM
+→ Employee List
+
+Search for the exact employee created by the test.
+
+Use the stored runtime values.
+
+Prefer searching by:
+
+Employee ID
+
+and/or
+
+the generated employee name.
+
+Verify:
+
+First Name
+Middle Name
+Last Name
+Employee ID
+
+If the employee details page allows verification of additional saved values, verify:
+
+Other ID
+Driver's License Number
+License Expiry Date
+Nationality
+Marital Status
+Date of Birth
+Gender
+Blood Type
+Test_Field
+
+Do not generate new values for verification.
+
+Use the runtime test-data object as the source of expected values.
+
+============================================================
+DELETE EMPLOYEE
+===============
+
+Delete ONLY the employee created by this test.
+
+Identify the employee using the stored:
+
+First Name
+Middle Name
+Last Name
+Employee ID
+
+Do not delete another employee.
+
+Perform the delete operation.
+
+If a confirmation dialog appears:
+
+* verify it
+* confirm deletion
+
+Use Playwright's dialog handling or the actual OrangeHRM confirmation UI, depending on what the DOM exposes.
+
+After deletion:
+
+1. Wait for the delete success toast.
+2. Verify the toast is visible.
+3. Verify it indicates successful deletion.
+
+Do NOT consider deletion successful simply because the Delete button was clicked.
+
+============================================================
+FINAL DELETION VERIFICATION
+===========================
+
+After deletion:
+
+Return to Employee List.
+
+Search using the same generated Employee ID/name.
+
+Verify that the employee no longer exists.
+
+The test must fail if the employee is still present.
+
+Do NOT generate another Employee ID.
+
+Do NOT search using different employee data.
+
+============================================================
+PAGE OBJECT MODEL
+=================
+
+Follow the existing Java POM architecture.
+
+If a suitable Employee/PIM page object already exists:
+
+* extend it
+* reuse it
+* do not create duplicate methods unnecessarily
+
+If one does not exist, create the appropriate page object.
+
+Potential structure:
+
+src/
+├── main/
+│   └── java/
+│       ├── pages/
+│       │   └── EmployeePage.java
+│       ├── utils/
+│       │   ├── ConfigReader.java
+│       │   ├── TestDataGenerator.java
+│       │   └── JsonUtils.java
+│       └── base/
+│           └── BasePage.java
+│
+└── test/
+└── java/
+└── tests/
+└── pim/
+└── EmployeeTest.java
+
+test_data/
+├── user_data1.json
+└── employee_photo.png
+
+Adapt the names and packages to the existing project conventions.
+
+Do NOT restructure the existing project merely to match this example.
+
+============================================================
+PAGE OBJECT RESPONSIBILITIES
+============================
+
+Page objects should contain UI interactions.
+
+Possible methods:
+
+clickPim()
+
+clickEmployeeList()
+
+clickAddEmployee()
+
+enterEmployeeName(firstName, middleName, lastName)
+
+enterEmployeeId(employeeId)
+
+uploadEmployeePhoto(photoPath)
+
+enableCreateLoginDetails()
+
+enterUsername(username)
+
+selectStatus(status)
+
+enterPassword(password)
+
+enterConfirmPassword(password)
+
+saveEmployee()
+
+verifyEmployeeCreatedToast()
+
+enterOtherId(otherId)
+
+enterDriverLicense(driverLicense)
+
+enterLicenseExpiryDate(date)
+
+selectNationality(nationality)
+
+selectMaritalStatus(maritalStatus)
+
+enterDateOfBirth(date)
+
+selectGender(gender)
+
+selectBloodType(bloodType)
+
+enterTestField(value)
+
+savePersonalDetails()
+
+verifyPersonalDetailsSavedToast()
+
+searchEmployee(...)
+
+verifyEmployee(...)
+
+deleteEmployee(...)
+
+verifyEmployeeDeletedToast()
+
+verifyEmployeeNotPresent(...)
+
+Adjust method names to match the existing framework.
+
+Do not create unnecessary methods if equivalent methods already exist.
+
+============================================================
+LOCATOR STRATEGY
+================
+
+Use robust Playwright Java locators.
+
+Preferred order:
+
+1. getByRole()
+2. getByLabel()
+3. getByPlaceholder()
+4. stable attributes
+5. CSS/XPath only when necessary
+
+Examples:
+
+page.getByRole(...)
+page.getByLabel(...)
+page.getByPlaceholder(...)
+
+Avoid:
+
+* screen coordinates
+* mouse-coordinate based automation
+* nth-child where avoidable
+* generated CSS classes
+* fragile XPath
+* arbitrary sleeps
+* hardcoded timing values
+
+============================================================
+ASSERTIONS
+==========
+
+Use Playwright Java assertions and TestNG assertions appropriately.
+
+Prefer Playwright assertions for UI state.
+
+For example:
+
+assertThat(locator).isVisible();
+
+assertThat(locator).hasText(expectedText);
+
+assertThat(locator).containsText(expectedText);
+
+Use TestNG assertions where appropriate for Java data-level validation.
+
+Verify:
+
+* PIM page loaded
+* Employee List loaded
+* Add Employee loaded
+* Create Login Details enabled
+* employee photo upload accepted where possible
+* employee creation success
+* creation success toast
+* Personal Details saved
+* Personal Details success toast
+* employee appears in Employee List
+* correct employee data
+* deletion performed on correct employee
+* delete success toast
+* employee no longer exists
+
+============================================================
+NO ARBITRARY WAITS
+==================
+
+DO NOT use:
+
+Thread.sleep()
+
+DO NOT use:
+
+page.waitForTimeout()
+
+Use:
+
+* Playwright auto-waiting
+* Playwright assertions
+* Locator.waitFor()
+* appropriate locator state checks
+* explicit waits only when genuinely necessary
+
+The automation must be synchronization-driven rather than time-delay-driven.
+
+============================================================
+LOGGING
+=======
+
+Follow existing logging conventions.
+
+If the project already uses a logging framework such as:
+
+SLF4J
+Log4j
+Logback
+
+reuse the existing implementation.
+
+Useful logs:
+
+Starting PIM employee creation test.
+
+Logging into OrangeHRM as Admin.
+
+Opening PIM.
+
+Opening Employee List.
+
+Opening Add Employee.
+
+Generated employee test data.
+
+Employee ID generated: XXXX.
+
+Uploading employee photo.
+
+Filling employee details.
+
+Creating employee login details.
+
+Saving employee.
+
+Employee creation success toast verified.
+
+Opening Personal Details.
+
+Filling Personal Details.
+
+Saving Personal Details.
+
+Personal Details success toast verified.
+
+Searching for employee.
+
+Employee verified successfully.
+
+Starting employee deletion.
+
+Delete success toast verified.
+
+Verifying employee deletion.
+
+Employee deletion verified successfully.
+
+NEVER print passwords in logs.
+
+NEVER attach passwords to Allure reports.
+
+NEVER expose passwords through failure messages.
+
+============================================================
+JENKINS COMPATIBILITY
+=====================
+
+The test must work with the existing Jenkins pipeline.
+
+Environment:
+
+Java
+Maven
+Playwright Java
+TestNG
+Chromium
+Windows
+Jenkins
+Headless execution
+
+Inspect the existing Jenkinsfile and Maven configuration before making changes.
+
+Reuse the existing Jenkins execution command if possible.
+
+Typical command:
+
+mvn test
+
+or the exact command already configured by the project.
+
+The new test must be automatically discovered by the existing TestNG/Maven configuration.
+
+Do not introduce dependencies unless absolutely necessary.
+
+Do not modify Jenkinsfile unless genuinely required.
+
+Do not break existing Jenkins jobs.
+
+============================================================
+REPORTING
+=========
+
+Preserve compatibility with the existing project reporting.
+
+If already configured, preserve:
+
+* TestNG reports
+* Allure
+* screenshots on failure
+* video on failure
+* trace on failure
+* JUnit XML
+* existing Jenkins test reporting
+* existing listeners
+
+Use the existing configuration.
+
+Do NOT replace an existing reporting framework unnecessarily.
+
+Do NOT introduce a second reporting mechanism that duplicates the existing setup.
+
+============================================================
+FAILURE / CLEANUP
+=================
+
+The test should not leave created employees behind.
+
+The normal test flow MUST explicitly delete the employee.
+
+If a failure occurs after employee creation but before normal deletion:
+
+* attempt cleanup if appropriate
+* do not hide the original failure
+* do not replace the original exception with a cleanup exception
+* preserve the original TestNG failure
+* follow the existing project's cleanup architecture
+
+If the project already has:
+
+@AfterMethod
+
+@AfterClass
+
+or another cleanup mechanism,
+
+reuse it where appropriate.
+
+Cleanup must target ONLY the employee created by this test.
+
+The runtime Employee ID should be used to identify the created employee.
+
+============================================================
+EXISTING TESTS
+==============
+
+Do NOT remove or break:
+
+* existing Login tests
+* existing Buzz tests
+* existing Vacancy tests
+* existing API tests
+* existing fixtures/setup
+* existing reporting
+* existing configuration
+* existing Jenkins pipeline
+* existing page objects
+* existing utilities
+
+The new PIM Employee test must coexist with the existing suite.
+
+Run existing tests after implementation to ensure there are no regressions.
+
+============================================================
+FILES TO CREATE/MODIFY
+======================
+
+First inspect the repository.
+
+Then determine the minimum required changes.
+
+Possible files:
+
+Create:
+
+test_data/user_data1.json
+
+Create/use:
+
+test_data/employee_photo.png
+
+Create or modify the appropriate Employee Page Object.
+
+Create or modify the appropriate PIM Employee Test.
+
+Potentially create or modify:
+
+TestDataGenerator.java
+
+EmployeeTestData.java
+
+JsonUtils.java
+
+Only create these if equivalent functionality does not already exist.
+
+Do NOT modify unrelated files.
+
+Do NOT modify working login, Buzz, Vacancy, API, or framework code unless genuinely required.
+
+============================================================
+COMPLETE FILE CONTENT REQUIREMENT
+=================================
+
+IMPORTANT:
+
+Whenever you create or modify a file, provide the COMPLETE contents of that file.
+
+Do NOT provide:
+
+* partial snippets
+* individual methods only
+* "add this line"
+* abbreviated code
+* omitted sections
+* placeholder comments such as "// existing code"
+
+I need complete replacement files that I can copy directly into my project.
+
+Preserve the existing formatting and coding style as much as possible.
+
+If an existing file must be modified, first inspect the complete file and then provide the complete updated file.
+
+Do NOT invent sections that were not present in the existing project.
+
+============================================================
+IMPLEMENTATION REQUIREMENT
+==========================
+
+Before writing code:
+
+1. Inspect the complete project structure.
+2. Identify the existing BaseTest/BasePage architecture.
+3. Identify the existing Playwright browser/context/page setup.
+4. Identify the existing Login Page Object.
+5. Identify the existing PIM/Employee Page Object, if any.
+6. Identify existing utilities.
+7. Identify existing logging.
+8. Identify existing TestNG listeners.
+9. Identify existing reporting.
+10. Identify the existing Maven dependencies.
+11. Identify the existing Jenkins execution flow.
+12. Identify the existing test-data structure.
+
+Only after this inspection should implementation begin.
+
+Do not guess existing file names or classes when they can be inspected.
+
+============================================================
+RANDOM DATA GENERATION
+======================
+
+Create random data using Java.
+
+Use appropriate Java APIs such as:
+
+java.util.Random
+
+or preferably:
+
+java.util.concurrent.ThreadLocalRandom
+
+and:
+
+java.time.LocalDate
+
+where appropriate.
+
+For names, use controlled synthetic pools.
+
+For alphanumeric values, generate only valid characters.
+
+Names must contain alphabetic characters only.
+
+Employee ID must contain exactly four numeric digits.
+
+Do not regenerate data after the initial test-data generation step.
+
+The generated EmployeeTestData object must remain the single runtime source of truth.
+
+============================================================
+GENDER CONSISTENCY
+==================
+
+Gender must be generated from the same controlled synthetic category used to select the first name.
+
+Example conceptual structure:
+
+Male:
+
+first name → David
+gender → Male
+
+Female:
+
+first name → Emily
+gender → Female
+
+The test must not do:
+
+firstName = randomMaleOrFemaleName();
+
+gender = randomGender();
+
+because that can create inconsistent data.
+
+Instead:
+
+NameGenderData selected = generator.generateNameAndGender();
+
+firstName = selected.getFirstName();
+
+gender = selected.getGender();
+
+Middle name and last name may be generated independently from their controlled pools, subject to the alphabetic-only requirement.
+
+============================================================
+DROPDOWN IMPLEMENTATION
+=======================
+
+The dropdown implementation must inspect the actual OrangeHRM DOM.
+
+Do not write:
+
+selectOption("Canadian");
+
+unless "Canadian" was first confirmed to exist in the current dropdown options.
+
+For custom OrangeHRM dropdown components, inspect the actual DOM.
+
+A reusable method can conceptually:
+
+1. click dropdown
+2. locate visible options
+3. collect text
+4. filter blank/placeholder values
+5. assert at least one valid option exists
+6. randomly select one option
+7. store the selected text
+8. click/select that option
+
+The same selected value must later be used for verification.
+
+If the OrangeHRM DOM uses a custom dropdown rather than a native HTML select, use Playwright Locator interactions rather than assuming selectOption() is supported.
+
+============================================================
+PHOTO UPLOAD IMPLEMENTATION
+===========================
+
+Use the existing project path conventions.
+
+Resolve:
+
+test_data/employee_photo.png
+
+relative to the project root or using the existing test-data utility.
+
+Use Playwright Java:
+
+setInputFiles()
+
+against the actual file input.
+
+Do not use:
+
+Robot
+
+Windows file chooser automation
+
+mouse coordinates
+
+keyboard shortcuts
+
+The upload must be performed through the DOM.
+
+============================================================
+TOAST VERIFICATION
+==================
+
+There are three critical toast validations.
+
+1. Employee Creation Success Toast
+
+2. Personal Details Update Success Toast
+
+3. Employee Delete Success Toast
+
+For each:
+
+* identify the actual OrangeHRM toast locator
+* wait using Playwright's automatic waiting/assertions
+* assert visibility
+* assert meaningful success text
+* continue only after verification
+
+Do not treat button clicks as proof of successful operations.
+
+The test must explicitly validate the toast.
+
+============================================================
+EMPLOYEE SEARCH AND VERIFICATION
+================================
+
+Search for the employee using the SAME Employee ID generated at the beginning.
+
+The preferred unique identifier is:
+
+Employee ID
+
+Use name fields as an additional verification where useful.
+
+After search:
+
+Verify the exact employee.
+
+Verify:
+
+First Name
+Middle Name
+Last Name
+Employee ID
+
+Where possible, also verify:
+
+Other ID
+Driver's License Number
+License Expiry Date
+Nationality
+Marital Status
+Date of Birth
+Gender
+Blood Type
+Test_Field
+
+Every expected value must come from the runtime test-data object.
+
+Never regenerate expected values.
+
+============================================================
+SAFE DELETION
+=============
+
+The test must delete ONLY the employee created by this execution.
+
+Before clicking Delete:
+
+Verify that the row corresponds to the generated Employee ID.
+
+If the employee list contains multiple employees:
+
+Do not delete based solely on row position.
+
+Do not use:
+
+nth()
+
+unless there is no safer alternative and the locator is scoped to the exact matching employee.
+
+Prefer locating the row containing the generated Employee ID and then interacting with Delete within that row.
+
+The deletion operation must be tied to the generated Employee ID.
+
+============================================================
+FINAL VERIFICATION
+==================
+
+After deletion:
+
+Return to Employee List.
+
+Search again using the exact same Employee ID.
+
+Verify that the employee does not exist.
+
+The test must fail if:
+
+* the employee remains visible
+* the employee row remains present
+* the employee can still be found using the generated Employee ID
+
+Do not simply verify that the page navigated back to Employee List.
+
+The final assertion must prove that the employee is no longer present.
+
+============================================================
+MAVEN / TESTNG EXECUTION
+========================
+
+The new test must be executable through the existing Maven/TestNG framework.
+
+First inspect:
+
+pom.xml
+
+and:
+
+testng.xml
+
+if present.
+
+Do not create a second test runner unnecessarily.
+
+The new test should be discovered by the existing configuration.
+
+Typical single-test execution may be:
+
+mvn -Dtest=EmployeeTest test
+
+Use the actual class name and package determined from the existing project.
+
+Typical complete suite execution:
+
+mvn test
+
+Provide the exact commands based on the inspected project.
+
+============================================================
+FINAL RESPONSE FROM COPILOT
+===========================
+
+After implementation, provide:
+
+1. Files created.
+
+2. Files modified.
+
+3. Complete contents of EVERY created/modified file.
+
+4. Explain how random employee data is generated.
+
+5. Explain how gender is derived consistently from the synthetic first-name category.
+
+6. Explain how dropdown options are parsed from the actual OrangeHRM UI.
+
+7. Explain how generated values are stored in user_data1.json.
+
+8. Confirm that user_data1.json is OUTPUT/STORAGE and NOT the source of random values.
+
+9. Explain the employee photo upload.
+
+10. Explain the creation success toast verification.
+
+11. Explain the Personal Details success toast verification.
+
+12. Explain the delete success toast verification.
+
+13. Explain the final employee-not-found verification.
+
+14. Give the exact command to execute the new PIM Employee test.
+
+15. Give the exact command to execute the complete test suite.
+
+16. Confirm existing tests were preserved.
+
+17. List any assumptions made about OrangeHRM selectors or UI behavior.
+
+18. List any Maven dependencies added, if any.
+
+19. Explain whether Jenkinsfile was modified.
+
+20. Explain how cleanup works if the test fails after employee creation.
+
+Do not make unrelated framework changes.
+
+============================================================
+FINAL ARCHITECTURE
+==================
+
+The intended flow is:
+
+GENERATE
+↓
+Runtime EmployeeTestData
+↓
+user_data1.json
+(STORE ACTUAL DATA)
+↓
+┌───────────────────────┴───────────────────────┐
+↓                                               ↓
+Create Employee                         Personal Details
+↓                                               ↓
+Verify Creation Toast                          Save
+↓                                               ↓
+↓                                      Verify Update Toast
+└───────────────────────┬───────────────────────┘
+↓
+Search Employee
+↓
+Verify Employee
+↓
+Delete Employee
+↓
+Verify Delete Toast
+↓
+Search Again
+↓
+Employee NOT Found
+↓
+PASSED
+======
+
+# END OF MASTER PROMPT

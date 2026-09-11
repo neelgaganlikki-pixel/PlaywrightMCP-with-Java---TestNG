@@ -1,0 +1,136 @@
+- generic [ref=f15e3]:
+  - generic:
+    - complementary [ref=f15e4]:
+      - navigation "Sidepanel" [ref=f15e5]:
+        - generic [ref=f15e6]:
+          - link [ref=f15e7] [cursor=pointer]:
+            - /url: https://www.orangehrm.com/
+            - img "client brand banner" [ref=f15e9]
+          - text: 
+        - generic [ref=f15e10]:
+          - generic [ref=f15e11]:
+            - generic [ref=f15e12]:
+              - textbox "Search" [ref=f15e15]
+              - button "" [ref=f15e16] [cursor=pointer]
+            - separator [ref=f15e18]
+          - list [ref=f15e19]:
+            - listitem [ref=f15e20]:
+              - link "Admin" [ref=f15e21] [cursor=pointer]:
+                - /url: /web/index.php/admin/viewAdminModule
+            - listitem [ref=f15e25]:
+              - link "PIM" [ref=f15e26] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewPimModule
+            - listitem [ref=f15e41]:
+              - link "Leave" [ref=f15e42] [cursor=pointer]:
+                - /url: /web/index.php/leave/viewLeaveModule
+            - listitem [ref=f15e46]:
+              - link "Time" [ref=f15e47] [cursor=pointer]:
+                - /url: /web/index.php/time/viewTimeModule
+            - listitem [ref=f15e54]:
+              - link "Recruitment" [ref=f15e55] [cursor=pointer]:
+                - /url: /web/index.php/recruitment/viewRecruitmentModule
+            - listitem [ref=f15e62]:
+              - link "My Info" [ref=f15e63] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewMyDetails
+            - listitem [ref=f15e70]:
+              - link "Performance" [ref=f15e71] [cursor=pointer]:
+                - /url: /web/index.php/performance/viewPerformanceModule
+            - listitem [ref=f15e80]:
+              - link "Dashboard" [ref=f15e81] [cursor=pointer]:
+                - /url: /web/index.php/dashboard/index
+            - listitem [ref=f15e85]:
+              - link "Directory" [ref=f15e86] [cursor=pointer]:
+                - /url: /web/index.php/directory/viewDirectory
+            - listitem [ref=f15e90]:
+              - link "Maintenance" [ref=f15e91] [cursor=pointer]:
+                - /url: /web/index.php/maintenance/viewMaintenanceModule
+            - listitem [ref=f15e96]:
+              - link "Claim" [ref=f15e97] [cursor=pointer]:
+                - /url: /web/index.php/claim/viewClaimModule
+            - listitem [ref=f15e105]:
+              - link "Buzz" [ref=f15e106] [cursor=pointer]:
+                - /url: /web/index.php/buzz/viewBuzz
+    - banner [ref=f15e110]:
+      - generic [ref=f15e111]:
+        - generic [ref=f15e112]:
+          - text: 
+          - heading "PIM" [level=6] [ref=f15e114]
+        - link [ref=f15e116]:
+          - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+          - button "Upgrade" [ref=f15e117] [cursor=pointer]
+        - list [ref=f15e123]:
+          - listitem [ref=f15e124]:
+            - generic [ref=f15e125] [cursor=pointer]:
+              - img "profile picture" [ref=f15e126]
+              - paragraph [ref=f15e127]: Vignesh singh
+              - generic [ref=f15e128]: 
+      - navigation "Topbar Menu" [ref=f15e130]:
+        - list [ref=f15e131]:
+          - listitem [ref=f15e132] [cursor=pointer]:
+            - generic [ref=f15e133]:
+              - text: Configuration
+              - generic [ref=f15e134]: 
+          - listitem [ref=f15e135] [cursor=pointer]:
+            - link "Employee List" [ref=f15e136]:
+              - /url: "#"
+          - listitem [ref=f15e137] [cursor=pointer]:
+            - link "Add Employee" [ref=f15e138]:
+              - /url: "#"
+          - listitem [ref=f15e139] [cursor=pointer]:
+            - link "Reports" [ref=f15e140]:
+              - /url: "#"
+          - button "" [ref=f15e142] [cursor=pointer]
+  - generic [ref=f15e144]:
+    - generic [ref=f15e146]:
+      - generic [ref=f15e147]:
+        - generic [ref=f15e148]:
+          - heading "Employee Information" [level=5] [ref=f15e150]
+          - button "" [ref=f15e153] [cursor=pointer]
+        - separator [ref=f15e155]
+        - generic [ref=f15e157]:
+          - generic [ref=f15e159]:
+            - generic [ref=f15e161]:
+              - generic [ref=f15e162]: Employee Name
+              - textbox "Type for hints..." [ref=f15e167]
+            - generic [ref=f15e169]:
+              - generic [ref=f15e170]: Employee Id
+              - textbox [ref=f15e173]
+            - generic [ref=f15e175]:
+              - generic [ref=f15e176]: Employment Status
+              - generic [ref=f15e180] [cursor=pointer]:
+                - generic [ref=f15e181]: "-- Select --"
+                - generic [ref=f15e182]: 
+            - generic [ref=f15e185]:
+              - generic [ref=f15e186]: Include
+              - generic [ref=f15e190] [cursor=pointer]:
+                - generic [ref=f15e191]: Current Employees Only
+                - generic [ref=f15e192]: 
+            - generic [ref=f15e195]:
+              - generic [ref=f15e196]: Supervisor Name
+              - textbox "Type for hints..." [ref=f15e201]
+            - generic [ref=f15e203]:
+              - generic [ref=f15e204]: Job Title
+              - generic [ref=f15e208] [cursor=pointer]:
+                - generic [ref=f15e209]: "-- Select --"
+                - generic [ref=f15e210]: 
+            - generic [ref=f15e213]:
+              - generic [ref=f15e214]: Sub Unit
+              - generic [ref=f15e218] [cursor=pointer]:
+                - generic [ref=f15e219]: "-- Select --"
+                - generic [ref=f15e220]: 
+          - separator [ref=f15e222]
+          - generic [ref=f15e223]:
+            - button "Reset" [ref=f15e224] [cursor=pointer]
+            - button "Search" [ref=f15e225] [cursor=pointer]
+      - generic [ref=f15e226]:
+        - button " Add" [ref=f15e228] [cursor=pointer]:
+          - generic [ref=f15e229]: 
+          - text: Add
+        - table [ref=f15e231]
+    - generic [ref=f15e236]:
+      - paragraph [ref=f15e237]: OrangeHRM OS 5.9
+      - paragraph [ref=f15e238]:
+        - text: © 2005 - 2026
+        - link "OrangeHRM, Inc" [ref=f15e239] [cursor=pointer]:
+          - /url: http://www.orangehrm.com
+        - text: . All rights reserved.

@@ -1,0 +1,144 @@
+- generic [ref=f4e3]:
+  - generic:
+    - complementary [ref=f4e4]:
+      - navigation "Sidepanel" [ref=f4e5]:
+        - generic [ref=f4e6]:
+          - link [ref=f4e7] [cursor=pointer]:
+            - /url: https://www.orangehrm.com/
+            - img "client brand banner" [ref=f4e9]
+          - text: 
+        - generic [ref=f4e10]:
+          - generic [ref=f4e11]:
+            - generic [ref=f4e12]:
+              - textbox "Search" [ref=f4e15]
+              - button "" [ref=f4e16] [cursor=pointer]
+            - separator [ref=f4e18]
+          - list [ref=f4e19]:
+            - listitem [ref=f4e20]:
+              - link "Admin" [ref=f4e21] [cursor=pointer]:
+                - /url: /web/index.php/admin/viewAdminModule
+            - listitem [ref=f4e25]:
+              - link "PIM" [ref=f4e26] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewPimModule
+            - listitem [ref=f4e41]:
+              - link "Leave" [ref=f4e42] [cursor=pointer]:
+                - /url: /web/index.php/leave/viewLeaveModule
+            - listitem [ref=f4e46]:
+              - link "Time" [ref=f4e47] [cursor=pointer]:
+                - /url: /web/index.php/time/viewTimeModule
+            - listitem [ref=f4e54]:
+              - link "Recruitment" [ref=f4e55] [cursor=pointer]:
+                - /url: /web/index.php/recruitment/viewRecruitmentModule
+            - listitem [ref=f4e62]:
+              - link "My Info" [ref=f4e63] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewMyDetails
+            - listitem [ref=f4e70]:
+              - link "Performance" [ref=f4e71] [cursor=pointer]:
+                - /url: /web/index.php/performance/viewPerformanceModule
+            - listitem [ref=f4e80]:
+              - link "Dashboard" [ref=f4e81] [cursor=pointer]:
+                - /url: /web/index.php/dashboard/index
+            - listitem [ref=f4e85]:
+              - link "Directory" [ref=f4e86] [cursor=pointer]:
+                - /url: /web/index.php/directory/viewDirectory
+            - listitem [ref=f4e90]:
+              - link "Maintenance" [ref=f4e91] [cursor=pointer]:
+                - /url: /web/index.php/maintenance/viewMaintenanceModule
+            - listitem [ref=f4e96]:
+              - link "Claim" [ref=f4e97] [cursor=pointer]:
+                - /url: /web/index.php/claim/viewClaimModule
+            - listitem [ref=f4e105]:
+              - link "Buzz" [ref=f4e106] [cursor=pointer]:
+                - /url: /web/index.php/buzz/viewBuzz
+    - banner [ref=f4e110]:
+      - generic [ref=f4e111]:
+        - generic [ref=f4e112]:
+          - text: 
+          - heading "PIM" [level=6] [ref=f4e114]
+        - link [ref=f4e116]:
+          - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+          - button "Upgrade" [ref=f4e117] [cursor=pointer]
+        - list [ref=f4e123]:
+          - listitem [ref=f4e124]:
+            - generic [ref=f4e125] [cursor=pointer]:
+              - img "profile picture" [ref=f4e126]
+              - paragraph [ref=f4e127]: sahil singh
+              - generic [ref=f4e128]: 
+      - navigation "Topbar Menu" [ref=f4e130]:
+        - list [ref=f4e131]:
+          - listitem [ref=f4e132] [cursor=pointer]:
+            - generic [ref=f4e133]:
+              - text: Configuration
+              - generic [ref=f4e134]: 
+          - listitem [ref=f4e135] [cursor=pointer]:
+            - link "Employee List" [ref=f4e136]:
+              - /url: "#"
+          - listitem [ref=f4e137] [cursor=pointer]:
+            - link "Add Employee" [ref=f4e138]:
+              - /url: "#"
+          - listitem [ref=f4e139] [cursor=pointer]:
+            - link "Reports" [ref=f4e140]:
+              - /url: "#"
+          - button "" [ref=f4e142] [cursor=pointer]
+  - generic [ref=f4e144]:
+    - generic [ref=f4e147]:
+      - heading "Add Employee" [level=6] [ref=f4e148]
+      - separator [ref=f4e149]
+      - generic [ref=f4e150]:
+        - generic [ref=f4e151]:
+          - generic [ref=f4e152]:
+            - generic [ref=f4e154]:
+              - button "Choose File"
+              - generic [ref=f4e155]:
+                - img "profile picture" [ref=f4e157]
+                - button "" [ref=f4e158] [cursor=pointer]
+            - paragraph [ref=f4e160]: "Accepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200px"
+          - generic [ref=f4e161]:
+            - generic [ref=f4e162]:
+              - generic [ref=f4e165]:
+                - generic [ref=f4e166]: Employee Full Name*
+                - generic [ref=f4e168]:
+                  - textbox "First Name" [ref=f4e171]
+                  - textbox "Middle Name" [ref=f4e174]
+                  - textbox "Last Name" [ref=f4e177]
+              - generic [ref=f4e180]:
+                - generic [ref=f4e181]: Employee Id
+                - textbox [ref=f4e184]: "0606"
+            - separator [ref=f4e185]
+            - generic [ref=f4e186]:
+              - paragraph [ref=f4e187]: Create Login Details
+              - checkbox [checked] [active] [ref=f4e190]
+            - generic [ref=f4e202]:
+              - generic [ref=f4e204]:
+                - generic [ref=f4e205]: Username*
+                - textbox [ref=f4e208]
+              - generic [ref=f4e210]:
+                - generic [ref=f4e211]: Status
+                - generic [ref=f4e213]:
+                  - generic [ref=f4e217] [cursor=pointer]:
+                    - radio "Enabled" [checked] [ref=f4e218]
+                    - text: Enabled
+                  - generic [ref=f4e223] [cursor=pointer]:
+                    - radio "Disabled" [ref=f4e224]
+                    - text: Disabled
+            - generic [ref=f4e227]:
+              - generic [ref=f4e228]:
+                - generic [ref=f4e229]:
+                  - generic [ref=f4e230]: Password*
+                  - textbox [ref=f4e233]
+                - paragraph [ref=f4e234]: For a strong password, please use a hard to guess combination of text with upper and lower case characters, symbols and numbers
+              - generic [ref=f4e236]:
+                - generic [ref=f4e237]: Confirm Password*
+                - textbox [ref=f4e240]
+        - separator [ref=f4e192]
+        - generic [ref=f4e193]:
+          - paragraph [ref=f4e194]: "* Required"
+          - button "Cancel" [ref=f4e195] [cursor=pointer]
+          - button "Save" [ref=f4e196] [cursor=pointer]
+    - generic [ref=f4e197]:
+      - paragraph [ref=f4e198]: OrangeHRM OS 5.9
+      - paragraph [ref=f4e199]:
+        - text: © 2005 - 2026
+        - link "OrangeHRM, Inc" [ref=f4e200] [cursor=pointer]:
+          - /url: http://www.orangehrm.com
+        - text: . All rights reserved.

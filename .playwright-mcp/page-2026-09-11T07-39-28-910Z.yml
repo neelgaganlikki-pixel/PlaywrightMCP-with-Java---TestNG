@@ -1,0 +1,140 @@
+- generic [ref=f9e2]:
+  - generic [ref=f9e3]:
+    - generic:
+      - complementary [ref=f9e4]:
+        - navigation "Sidepanel" [ref=f9e5]:
+          - generic [ref=f9e6]:
+            - link [ref=f9e7] [cursor=pointer]:
+              - /url: https://www.orangehrm.com/
+              - img "client brand banner" [ref=f9e9]
+            - text: 
+          - generic [ref=f9e10]:
+            - generic [ref=f9e11]:
+              - generic [ref=f9e12]:
+                - textbox "Search" [ref=f9e15]
+                - button "" [ref=f9e16] [cursor=pointer]
+              - separator [ref=f9e18]
+            - list [ref=f9e19]:
+              - listitem [ref=f9e20]:
+                - link "Admin" [ref=f9e21] [cursor=pointer]:
+                  - /url: /web/index.php/admin/viewAdminModule
+              - listitem [ref=f9e25]:
+                - link "PIM" [ref=f9e26] [cursor=pointer]:
+                  - /url: /web/index.php/pim/viewPimModule
+              - listitem [ref=f9e41]:
+                - link "Leave" [ref=f9e42] [cursor=pointer]:
+                  - /url: /web/index.php/leave/viewLeaveModule
+              - listitem [ref=f9e46]:
+                - link "Time" [ref=f9e47] [cursor=pointer]:
+                  - /url: /web/index.php/time/viewTimeModule
+              - listitem [ref=f9e54]:
+                - link "Recruitment" [ref=f9e55] [cursor=pointer]:
+                  - /url: /web/index.php/recruitment/viewRecruitmentModule
+              - listitem [ref=f9e62]:
+                - link "My Info" [ref=f9e63] [cursor=pointer]:
+                  - /url: /web/index.php/pim/viewMyDetails
+              - listitem [ref=f9e70]:
+                - link "Performance" [ref=f9e71] [cursor=pointer]:
+                  - /url: /web/index.php/performance/viewPerformanceModule
+              - listitem [ref=f9e80]:
+                - link "Dashboard" [ref=f9e81] [cursor=pointer]:
+                  - /url: /web/index.php/dashboard/index
+              - listitem [ref=f9e85]:
+                - link "Directory" [ref=f9e86] [cursor=pointer]:
+                  - /url: /web/index.php/directory/viewDirectory
+              - listitem [ref=f9e90]:
+                - link "Maintenance" [ref=f9e91] [cursor=pointer]:
+                  - /url: /web/index.php/maintenance/viewMaintenanceModule
+              - listitem [ref=f9e96]:
+                - link "Claim" [ref=f9e97] [cursor=pointer]:
+                  - /url: /web/index.php/claim/viewClaimModule
+              - listitem [ref=f9e105]:
+                - link "Buzz" [ref=f9e106] [cursor=pointer]:
+                  - /url: /web/index.php/buzz/viewBuzz
+      - banner [ref=f9e110]:
+        - generic [ref=f9e111]:
+          - generic [ref=f9e112]:
+            - text: 
+            - generic [ref=f9e113]:
+              - heading "Admin" [level=6] [ref=f9e114]
+              - heading "/ User Management" [level=6] [ref=f9e115]
+          - link [ref=f9e117]:
+            - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+            - button "Upgrade" [ref=f9e118] [cursor=pointer]
+          - list [ref=f9e124]:
+            - listitem [ref=f9e125]:
+              - generic [ref=f9e126] [cursor=pointer]:
+                - img "profile picture" [ref=f9e127]
+                - paragraph [ref=f9e128]: Vignesh singh
+                - generic [ref=f9e129]: 
+        - navigation "Topbar Menu" [ref=f9e131]:
+          - list [ref=f9e132]:
+            - listitem [ref=f9e133] [cursor=pointer]:
+              - generic [ref=f9e134]:
+                - text: User Management
+                - generic [ref=f9e135]: 
+            - listitem [ref=f9e136] [cursor=pointer]:
+              - generic [ref=f9e137]:
+                - text: Job
+                - generic [ref=f9e138]: 
+            - listitem [ref=f9e139] [cursor=pointer]:
+              - generic [ref=f9e140]:
+                - text: Organization
+                - generic [ref=f9e141]: 
+            - listitem [ref=f9e142] [cursor=pointer]:
+              - generic [ref=f9e143]:
+                - text: Qualifications
+                - generic [ref=f9e144]: 
+            - listitem [ref=f9e145] [cursor=pointer]:
+              - generic [ref=f9e146]:
+                - text: More
+                - generic [ref=f9e147]: 
+            - button "" [ref=f9e149] [cursor=pointer]
+    - generic [ref=f9e151]:
+      - generic [ref=f9e153]:
+        - generic [ref=f9e154]:
+          - generic [ref=f9e155]:
+            - heading "System Users" [level=5] [ref=f9e157]
+            - button "" [ref=f9e160] [cursor=pointer]
+          - separator [ref=f9e162]
+          - generic [ref=f9e164]:
+            - generic [ref=f9e166]:
+              - generic [ref=f9e168]:
+                - generic [ref=f9e169]: Username
+                - textbox [ref=f9e172]: JohnKing0442
+              - generic [ref=f9e174]:
+                - generic [ref=f9e175]: User Role
+                - generic [ref=f9e179] [cursor=pointer]:
+                  - generic [ref=f9e180]: "-- Select --"
+                  - generic [ref=f9e181]: 
+              - generic [ref=f9e184]:
+                - generic [ref=f9e185]: Employee Name
+                - textbox "Type for hints..." [ref=f9e190]
+              - generic [ref=f9e192]:
+                - generic [ref=f9e193]: Status
+                - generic [ref=f9e197] [cursor=pointer]:
+                  - generic [ref=f9e198]: "-- Select --"
+                  - generic [ref=f9e199]: 
+            - separator [ref=f9e201]
+            - generic [ref=f9e202]:
+              - button "Reset" [ref=f9e203] [cursor=pointer]
+              - button "Search" [ref=f9e204] [cursor=pointer]
+        - generic [ref=f9e205]:
+          - button " Add" [ref=f9e207] [cursor=pointer]:
+            - generic [ref=f9e208]: 
+            - text: Add
+          - table [ref=f9e214]
+      - generic [ref=f9e261]:
+        - paragraph [ref=f9e262]: OrangeHRM OS 5.9
+        - paragraph [ref=f9e263]:
+          - text: © 2005 - 2026
+          - link "OrangeHRM, Inc" [ref=f9e264] [cursor=pointer]:
+            - /url: http://www.orangehrm.com
+          - text: . All rights reserved.
+  - generic [ref=f9e282] [cursor=pointer]:
+    - generic [ref=f9e283]:
+      - generic [ref=f9e284]: 
+      - generic [ref=f9e287]:
+        - paragraph [ref=f9e288]: Success
+        - paragraph [ref=f9e289]: Successfully Deleted
+    - button "×" [ref=f9e291]
