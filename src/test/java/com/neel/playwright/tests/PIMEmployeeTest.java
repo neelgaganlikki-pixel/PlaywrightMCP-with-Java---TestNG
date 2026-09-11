@@ -46,6 +46,7 @@ public class PIMEmployeeTest extends BaseTest {
         }
         pimPage.fillTestField(data.testField);
         JsonUtils.writeEmployeeData(data);
+        JsonUtils.writeEmployeeDataText(data);
         pimPage.save();
         pimPage.verifySuccessToast("Successfully");
         pimPage.openEmployeeList();

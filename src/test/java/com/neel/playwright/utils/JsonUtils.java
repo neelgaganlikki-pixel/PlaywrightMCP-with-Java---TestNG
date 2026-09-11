@@ -16,6 +16,32 @@ public final class JsonUtils {
         Files.writeString(output, toJson(data.asJson(), 0) + System.lineSeparator(), StandardCharsets.UTF_8);
     }
 
+    public static void writeEmployeeDataText(EmployeeTestData data) throws IOException {
+        Path output = Path.of("test-results", "employee_test_data.txt");
+        Files.createDirectories(output.getParent());
+        String content = "Admin username: " + EmployeeTestData.ADMIN_USERNAME + System.lineSeparator()
+                + "Admin password: [MASKED]" + System.lineSeparator()
+                + "First name: " + data.firstName + System.lineSeparator()
+                + "Middle name: " + data.middleName + System.lineSeparator()
+                + "Last name: " + data.lastName + System.lineSeparator()
+                + "Employee ID: " + data.employeeId + System.lineSeparator()
+                + "Gender: " + data.gender + System.lineSeparator()
+                + "Other ID: " + data.otherId + System.lineSeparator()
+                + "Driver's license number: " + data.driverLicenseNumber + System.lineSeparator()
+                + "License expiry date: " + data.licenseExpiryDate + System.lineSeparator()
+                + "Nationality: " + data.nationality + System.lineSeparator()
+                + "Marital status: " + data.maritalStatus + System.lineSeparator()
+                + "Date of birth: " + data.dateOfBirth + System.lineSeparator()
+                + "Employee username: " + EmployeeTestData.EMPLOYEE_USERNAME + System.lineSeparator()
+                + "Employee status: Enabled" + System.lineSeparator()
+                + "Employee password: [MASKED]" + System.lineSeparator()
+                + "Confirm password: [MASKED]" + System.lineSeparator()
+                + "Blood type: " + data.bloodType + System.lineSeparator()
+                + "Test_Field: " + data.testField + System.lineSeparator()
+                + "Photo: " + EmployeeTestData.PHOTO_PATH + System.lineSeparator();
+        Files.writeString(output, content, StandardCharsets.UTF_8);
+    }
+
     private static String toJson(Object value, int level) {
         if (value instanceof Map<?, ?> map) {
             StringBuilder json = new StringBuilder("{");

@@ -1,0 +1,20 @@
+Admin username: Admin
+Admin password: [MASKED]
+First name: Laura
+Middle name: Grace
+Last name: Anderson
+Employee ID: 9533
+Gender: Female
+Other ID: YY6SJ6P4
+Driver's license number: TP27RLFKWI
+License expiry date: 2027-23-06
+Nationality: Monacan
+Marital status: Married
+Date of birth: 1980-08-04
+Employee username: JohnKing0442
+Employee status: Enabled
+Employee password: [MASKED]
+Confirm password: [MASKED]
+Blood type: Unavailable in current OrangeHRM UI
+Test_Field: RT1ABJO3
+Photo: test_data/employee_photo.png

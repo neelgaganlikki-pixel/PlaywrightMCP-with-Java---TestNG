@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.neel.playwright.tests.PIMEmployeeTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 35.50 s -- in com.neel.playwright.tests.PIMEmployeeTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 36.27 s -- in com.neel.playwright.tests.PIMEmployeeTest

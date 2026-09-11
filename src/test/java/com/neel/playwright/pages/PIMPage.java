@@ -53,7 +53,9 @@ public class PIMPage {
     public void verifySuccessToast(String expectedText) {
         toast.waitFor();
         String text = toast.innerText().toLowerCase();
-        if (!text.contains("success") || !text.contains(expectedText.toLowerCase())) {
+        boolean valid = text.contains("success") && text.contains(expectedText.toLowerCase());
+        System.out.println("OrangeHRM toast [" + (valid ? "VALID" : "INVALID") + "]: " + text);
+        if (!valid) {
             throw new AssertionError("Unexpected OrangeHRM toast: " + text);
         }
     }
