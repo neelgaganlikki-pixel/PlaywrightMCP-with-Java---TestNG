@@ -20,7 +20,7 @@ public final class JsonUtils {
         Path output = Path.of("test-results", "employee_test_data.txt");
         Files.createDirectories(output.getParent());
         String content = "Admin username: " + EmployeeTestData.ADMIN_USERNAME + System.lineSeparator()
-                + "Admin password: [MASKED]" + System.lineSeparator()
+                + "Admin password: " + EmployeeTestData.ADMIN_PASSWORD + System.lineSeparator()
                 + "First name: " + data.firstName + System.lineSeparator()
                 + "Middle name: " + data.middleName + System.lineSeparator()
                 + "Last name: " + data.lastName + System.lineSeparator()
@@ -34,8 +34,8 @@ public final class JsonUtils {
                 + "Date of birth: " + data.dateOfBirth + System.lineSeparator()
                 + "Employee username: " + EmployeeTestData.EMPLOYEE_USERNAME + System.lineSeparator()
                 + "Employee status: Enabled" + System.lineSeparator()
-                + "Employee password: [MASKED]" + System.lineSeparator()
-                + "Confirm password: [MASKED]" + System.lineSeparator()
+                + "Employee password: " + EmployeeTestData.EMPLOYEE_PASSWORD + System.lineSeparator()
+                + "Confirm password: " + EmployeeTestData.EMPLOYEE_PASSWORD + System.lineSeparator()
                 + "Blood type: " + data.bloodType + System.lineSeparator()
                 + "Test_Field: " + data.testField + System.lineSeparator()
                 + "Photo: " + EmployeeTestData.PHOTO_PATH + System.lineSeparator();

@@ -1,20 +1,20 @@
 {
   "custom_fields": {
-    "test_field": "RT1ABJO3",
-    "blood_type": "Unavailable in current OrangeHRM UI"
+    "test_field": "UP6CRVLE",
+    "blood_type": "A-"
   },
   "employee": {
-    "license_expiry_date": "2027-23-06",
-    "middle_name": "Grace",
-    "driver_license_number": "TP27RLFKWI",
-    "nationality": "Monacan",
+    "license_expiry_date": "2028-10-11",
+    "middle_name": "Marie",
+    "driver_license_number": "5S5IOUERZ8",
+    "nationality": "Slovenian",
     "gender": "Female",
-    "first_name": "Laura",
-    "last_name": "Anderson",
-    "date_of_birth": "1980-08-04",
-    "employee_id": "9533",
+    "first_name": "Emma",
+    "last_name": "Parker",
+    "date_of_birth": "1982-18-01",
+    "employee_id": "4455",
     "marital_status": "Married",
-    "other_id": "YY6SJ6P4"
+    "other_id": "PROJKK3B"
   },
   "photo": {
     "path": "test_data/employee_photo.png"

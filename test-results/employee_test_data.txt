@@ -1,20 +1,20 @@
 Admin username: Admin
-Admin password: [MASKED]
-First name: Laura
-Middle name: Grace
-Last name: Anderson
-Employee ID: 9533
+Admin password: admin123
+First name: Emma
+Middle name: Marie
+Last name: Parker
+Employee ID: 4455
 Gender: Female
-Other ID: YY6SJ6P4
-Driver's license number: TP27RLFKWI
-License expiry date: 2027-23-06
-Nationality: Monacan
+Other ID: PROJKK3B
+Driver's license number: 5S5IOUERZ8
+License expiry date: 2028-10-11
+Nationality: Slovenian
 Marital status: Married
-Date of birth: 1980-08-04
+Date of birth: 1982-18-01
 Employee username: JohnKing0442
 Employee status: Enabled
-Employee password: [MASKED]
-Confirm password: [MASKED]
-Blood type: Unavailable in current OrangeHRM UI
-Test_Field: RT1ABJO3
+Employee password: JkAuto2026X9m4
+Confirm password: JkAuto2026X9m4
+Blood type: A-
+Test_Field: UP6CRVLE
 Photo: test_data/employee_photo.png

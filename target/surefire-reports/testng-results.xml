@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-11T13:29:14 IST" name="Surefire suite" finished-at="2026-09-11T13:29:49 IST" duration-ms="35446">
+  <suite started-at="2026-09-11T13:33:13 IST" name="Surefire suite" finished-at="2026-09-11T13:33:53 IST" duration-ms="40225">
     <groups>
     </groups>
-    <test started-at="2026-09-11T13:29:14 IST" name="Surefire test" finished-at="2026-09-11T13:29:49 IST" duration-ms="35446">
+    <test started-at="2026-09-11T13:33:13 IST" name="Surefire test" finished-at="2026-09-11T13:33:53 IST" duration-ms="40225">
       <class name="com.neel.playwright.tests.PIMEmployeeTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:29:14 IST" name="setUp" finished-at="2026-09-11T13:29:20 IST" duration-ms="6513" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:13 IST" name="setUp" finished-at="2026-09-11T13:33:19 IST" duration-ms="6340" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:29:20 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-11T13:29:48 IST" duration-ms="27200" status="PASS">
+        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:19 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-11T13:33:52 IST" duration-ms="32460" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createVerifyAndDeleteEmployee -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:29:48 IST" name="tearDown" finished-at="2026-09-11T13:29:49 IST" duration-ms="1664" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:52 IST" name="tearDown" finished-at="2026-09-11T13:33:53 IST" duration-ms="1351" status="PASS">
           <params>
             <param index="0">
               <value>
