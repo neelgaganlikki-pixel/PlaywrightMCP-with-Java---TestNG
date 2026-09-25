@@ -1,0 +1,107 @@
+# OrangeHRM Playwright Java – Locator Discovery, Validation and Self-Correction
+
+I am developing an **OrangeHRM UI automation framework using Playwright with Java, Maven and TestNG/JUnit as configured in the existing project**.
+
+Your job is to identify, validate, correct and maintain Playwright Java locators without guessing.
+
+Follow ALL rules below.
+
+---
+
+## 1. Inspect the Existing Project First
+
+Before changing any locator:
+
+1. Inspect the project structure.
+2. Identify the relevant test class.
+3. Identify the relevant Page Object/Page class.
+4. Locate the existing locator.
+5. Inspect how the locator is currently being used.
+6. Preserve the existing framework architecture and coding style.
+
+Do not make changes before understanding the existing implementation.
+
+---
+
+# 2. Find the Correct Playwright Java Locator
+
+For every element, first determine the actual DOM element that needs to be automated.
+
+Use Playwright Java locator mechanisms such as:
+
+```java
+page.locator(...)
+page.getByRole(...)
+page.getByLabel(...)
+page.getByPlaceholder(...)
+page.getByTestId(...)
+```
+
+Select the most stable locator based on the actual DOM.
+
+Do NOT guess the locator.
+
+---
+
+# 3. Locator Priority
+
+Prefer locators in this order:
+
+### Priority 1 – Test attributes
+
+```java
+page.getByTestId("...")
+```
+
+or:
+
+```java
+page.locator("[data-testid='...']")
+```
+
+### Priority 2 – Stable ID
+
+```java
+page.locator("#username")
+```
+
+### Priority 3 – Stable name
+
+```java
+page.locator("[name='username']")
+```
+
+### Priority 4 – Stable attributes
+
+For example:
+
+```java
+page.locator("input[type='password']")
+```
+
+only when the selector uniquely identifies the intended element.
+
+### Priority 5 – Playwright role locators
+
+```java
+page.getByRole(AriaRole.BUTTON)
+```
+
+Use the accessible name only when it is stable and language-independent.
+
+### Priority 6 – Label / placeholder
+
+```java
+page.getByLabel("...")
+page.getByPlaceholder("...")
+```
+
+Use these only when the label/placeholder is stable.
+
+### Priority 7 – CSS
+
+Use a stable CSS relationship when necessary.
+
+### Priority 8 – XPath
+
+Use XPath only

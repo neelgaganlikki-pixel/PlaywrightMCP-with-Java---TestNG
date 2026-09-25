@@ -1,20 +1,20 @@
 Admin username: Admin
 Admin password: admin123
-First name: Emma
-Middle name: Marie
-Last name: Parker
-Employee ID: 4455
+First name: Jessica
+Middle name: Thomas
+Last name: Anderson
+Employee ID: 9869
 Gender: Female
-Other ID: PROJKK3B
-Driver's license number: 5S5IOUERZ8
-License expiry date: 2028-10-11
-Nationality: Slovenian
-Marital status: Married
-Date of birth: 1982-18-01
+Other ID: WA2ZY7OG
+Driver's license number: 43S9AC7D4Q
+License expiry date: 2027-17-12
+Nationality: Austrian
+Marital status: Single
+Date of birth: 1996-12-08
 Employee username: JohnKing0442
 Employee status: Enabled
 Employee password: JkAuto2026X9m4
 Confirm password: JkAuto2026X9m4
-Blood type: A-
-Test_Field: UP6CRVLE
+Blood type: O+
+Test_Field: J9R4OCM9
 Photo: test_data/employee_photo.png

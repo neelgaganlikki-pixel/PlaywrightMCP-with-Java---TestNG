@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-11T13:33:13 IST" name="Surefire suite" finished-at="2026-09-11T13:33:53 IST" duration-ms="40225">
+  <suite started-at="2026-09-25T21:22:25 IST" name="Playwright Automation Suite" finished-at="2026-09-25T21:27:42 IST" duration-ms="316648">
     <groups>
     </groups>
-    <test started-at="2026-09-11T13:33:13 IST" name="Surefire test" finished-at="2026-09-11T13:33:53 IST" duration-ms="40225">
-      <class name="com.neel.playwright.tests.PIMEmployeeTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:13 IST" name="setUp" finished-at="2026-09-11T13:33:19 IST" duration-ms="6340" status="PASS">
+    <test started-at="2026-09-25T21:22:25 IST" name="Playwright Tests" finished-at="2026-09-25T21:27:42 IST" duration-ms="316648">
+      <class name="com.neel.playwright.tests.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:26 IST" name="setUp" finished-at="2026-09-25T21:22:31 IST" duration-ms="5908" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:19 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-11T13:33:52 IST" duration-ms="32460" status="PASS">
+        <test-method signature="verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:31 IST" name="verifyOrangeHRMLogin" finished-at="2026-09-25T21:22:59 IST" duration-ms="27636" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createVerifyAndDeleteEmployee -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4]" started-at="2026-09-11T13:33:52 IST" name="tearDown" finished-at="2026-09-11T13:33:53 IST" duration-ms="1351" status="PASS">
+        </test-method> <!-- verifyOrangeHRMLogin -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:59 IST" name="tearDown" finished-at="2026-09-25T21:23:10 IST" duration-ms="10745" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=createVerifyAndDeleteEmployee status=SUCCESS method=PIMEmployeeTest.createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@5db250b4] output={null}]]]>
+                <![CDATA[[TestResult name=verifyOrangeHRMLogin status=SUCCESS method=LoginTest.verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.LoginTest -->
+      <class name="com.neel.playwright.tests.PIMEmployeeTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:25:52 IST" name="setUp" finished-at="2026-09-25T21:25:54 IST" duration-ms="1883" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:25:54 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-25T21:27:40 IST" duration-ms="106512" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createVerifyAndDeleteEmployee -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:27:40 IST" name="tearDown" finished-at="2026-09-25T21:27:42 IST" duration-ms="1685" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createVerifyAndDeleteEmployee status=SUCCESS method=PIMEmployeeTest.createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f] output={null}]]]>
               </value>
             </param>
           </params>
@@ -27,6 +48,69 @@
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.PIMEmployeeTest -->
-    </test> <!-- Surefire test -->
-  </suite> <!-- Surefire suite -->
+      <class name="com.neel.playwright.tests.CreateBuzzPostTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:23:58 IST" name="setUp" finished-at="2026-09-25T21:24:00 IST" duration-ms="1996" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:24:00 IST" name="verifyCreateBuzzPost" finished-at="2026-09-25T21:24:49 IST" duration-ms="48676" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCreateBuzzPost -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:24:49 IST" name="tearDown" finished-at="2026-09-25T21:24:56 IST" duration-ms="7688" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyCreateBuzzPost status=SUCCESS method=CreateBuzzPostTest.verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.CreateBuzzPostTest -->
+      <class name="com.neel.playwright.tests.LogoutTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:10 IST" name="setUp" finished-at="2026-09-25T21:23:12 IST" duration-ms="2014" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:12 IST" name="verifyOrangeHRMLogout" finished-at="2026-09-25T21:23:53 IST" duration-ms="41524" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyOrangeHRMLogout -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:53 IST" name="tearDown" finished-at="2026-09-25T21:23:58 IST" duration-ms="4559" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyOrangeHRMLogout status=SUCCESS method=LogoutTest.verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.LogoutTest -->
+      <class name="com.neel.playwright.tests.DeleteBuzzPostTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:24:56 IST" name="setUp" finished-at="2026-09-25T21:24:58 IST" duration-ms="1925" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyDeleteBuzzPost()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:24:58 IST" name="verifyDeleteBuzzPost" finished-at="2026-09-25T21:25:47 IST" duration-ms="49144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDeleteBuzzPost -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:25:47 IST" name="tearDown" finished-at="2026-09-25T21:25:52 IST" duration-ms="4639" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyDeleteBuzzPost status=SUCCESS method=DeleteBuzzPostTest.verifyDeleteBuzzPost()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.neel.playwright.tests.DeleteBuzzPostTest -->
+    </test> <!-- Playwright Tests -->
+  </suite> <!-- Playwright Automation Suite -->
 </testng-results>

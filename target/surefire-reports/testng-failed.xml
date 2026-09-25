@@ -3,13 +3,13 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="com.neel.playwright.tests.PIMEmployeeTest">
+      <class name="com.neel.playwright.tests.DeleteBuzzPostTest">
         <methods>
           <include name="setUp"/>
-          <include name="createVerifyAndDeleteEmployee"/>
+          <include name="verifyDeleteBuzzPost"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- com.neel.playwright.tests.PIMEmployeeTest -->
+      </class> <!-- com.neel.playwright.tests.DeleteBuzzPostTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
