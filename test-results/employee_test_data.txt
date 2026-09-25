@@ -1,20 +1,20 @@
 Admin username: Admin
 Admin password: admin123
-First name: Jessica
-Middle name: Thomas
-Last name: Anderson
-Employee ID: 9869
-Gender: Female
-Other ID: WA2ZY7OG
-Driver's license number: 43S9AC7D4Q
-License expiry date: 2027-17-12
-Nationality: Austrian
-Marital status: Single
-Date of birth: 1996-12-08
+First name: Daniel
+Middle name: Grace
+Last name: Morgan
+Employee ID: 7219
+Gender: Male
+Other ID: FY2SDBZP
+Driver's license number: L8LSFWETSV
+License expiry date: 2029-08-09
+Nationality: East Timorese
+Marital status: Other
+Date of birth: 1994-23-06
 Employee username: JohnKing0442
 Employee status: Enabled
 Employee password: JkAuto2026X9m4
 Confirm password: JkAuto2026X9m4
-Blood type: O+
-Test_Field: J9R4OCM9
+Blood type: AB+
+Test_Field: KDSTU2DL
 Photo: test_data/employee_photo.png

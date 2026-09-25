@@ -40,7 +40,7 @@ public class BaseTest {
                 Boolean.parseBoolean(
                         System.getProperty(
                                 "headless",
-                                "false"
+                                "true"
                         )
                 );
 

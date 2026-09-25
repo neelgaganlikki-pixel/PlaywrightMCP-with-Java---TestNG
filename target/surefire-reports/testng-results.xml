@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-25T21:22:25 IST" name="Playwright Automation Suite" finished-at="2026-09-25T21:27:42 IST" duration-ms="316648">
+  <suite started-at="2026-09-25T21:58:59 IST" name="Playwright Automation Suite" finished-at="2026-09-25T22:00:27 IST" duration-ms="88589">
     <groups>
     </groups>
-    <test started-at="2026-09-25T21:22:25 IST" name="Playwright Tests" finished-at="2026-09-25T21:27:42 IST" duration-ms="316648">
+    <test started-at="2026-09-25T21:58:59 IST" name="Playwright Tests" finished-at="2026-09-25T22:00:27 IST" duration-ms="88589">
       <class name="com.neel.playwright.tests.LoginTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:26 IST" name="setUp" finished-at="2026-09-25T21:22:31 IST" duration-ms="5908" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:58:59 IST" name="setUp" finished-at="2026-09-25T21:59:04 IST" duration-ms="5522" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:31 IST" name="verifyOrangeHRMLogin" finished-at="2026-09-25T21:22:59 IST" duration-ms="27636" status="PASS">
+        <test-method signature="verifyOrangeHRMLogin()[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:59:04 IST" name="verifyOrangeHRMLogin" finished-at="2026-09-25T21:59:14 IST" duration-ms="9996" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyOrangeHRMLogin -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:22:59 IST" name="tearDown" finished-at="2026-09-25T21:23:10 IST" duration-ms="10745" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LoginTest@50a638b5]" started-at="2026-09-25T21:59:14 IST" name="tearDown" finished-at="2026-09-25T21:59:18 IST" duration-ms="3391" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -28,15 +28,15 @@
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.LoginTest -->
       <class name="com.neel.playwright.tests.PIMEmployeeTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:25:52 IST" name="setUp" finished-at="2026-09-25T21:25:54 IST" duration-ms="1883" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:59:59 IST" name="setUp" finished-at="2026-09-25T22:00:00 IST" duration-ms="1537" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:25:54 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-25T21:27:40 IST" duration-ms="106512" status="PASS">
+        <test-method signature="createVerifyAndDeleteEmployee()[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T22:00:00 IST" name="createVerifyAndDeleteEmployee" finished-at="2026-09-25T22:00:26 IST" duration-ms="26164" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createVerifyAndDeleteEmployee -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T21:27:40 IST" name="tearDown" finished-at="2026-09-25T21:27:42 IST" duration-ms="1685" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.PIMEmployeeTest@61862a7f]" started-at="2026-09-25T22:00:26 IST" name="tearDown" finished-at="2026-09-25T22:00:27 IST" duration-ms="963" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -49,15 +49,15 @@
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.PIMEmployeeTest -->
       <class name="com.neel.playwright.tests.CreateBuzzPostTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:23:58 IST" name="setUp" finished-at="2026-09-25T21:24:00 IST" duration-ms="1996" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:59:32 IST" name="setUp" finished-at="2026-09-25T21:59:34 IST" duration-ms="1479" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:24:00 IST" name="verifyCreateBuzzPost" finished-at="2026-09-25T21:24:49 IST" duration-ms="48676" status="PASS">
+        <test-method signature="verifyCreateBuzzPost()[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:59:34 IST" name="verifyCreateBuzzPost" finished-at="2026-09-25T21:59:40 IST" duration-ms="6745" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyCreateBuzzPost -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:24:49 IST" name="tearDown" finished-at="2026-09-25T21:24:56 IST" duration-ms="7688" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.CreateBuzzPostTest@dbf57b3]" started-at="2026-09-25T21:59:40 IST" name="tearDown" finished-at="2026-09-25T21:59:41 IST" duration-ms="755" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -70,15 +70,15 @@
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.CreateBuzzPostTest -->
       <class name="com.neel.playwright.tests.LogoutTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:10 IST" name="setUp" finished-at="2026-09-25T21:23:12 IST" duration-ms="2014" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:59:18 IST" name="setUp" finished-at="2026-09-25T21:59:19 IST" duration-ms="1506" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:12 IST" name="verifyOrangeHRMLogout" finished-at="2026-09-25T21:23:53 IST" duration-ms="41524" status="PASS">
+        <test-method signature="verifyOrangeHRMLogout()[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:59:19 IST" name="verifyOrangeHRMLogout" finished-at="2026-09-25T21:59:32 IST" duration-ms="12409" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyOrangeHRMLogout -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:23:53 IST" name="tearDown" finished-at="2026-09-25T21:23:58 IST" duration-ms="4559" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.LogoutTest@123ef382]" started-at="2026-09-25T21:59:32 IST" name="tearDown" finished-at="2026-09-25T21:59:32 IST" duration-ms="647" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -91,15 +91,15 @@
         </test-method> <!-- tearDown -->
       </class> <!-- com.neel.playwright.tests.LogoutTest -->
       <class name="com.neel.playwright.tests.DeleteBuzzPostTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:24:56 IST" name="setUp" finished-at="2026-09-25T21:24:58 IST" duration-ms="1925" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:59:41 IST" name="setUp" finished-at="2026-09-25T21:59:43 IST" duration-ms="1542" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyDeleteBuzzPost()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:24:58 IST" name="verifyDeleteBuzzPost" finished-at="2026-09-25T21:25:47 IST" duration-ms="49144" status="PASS">
+        <test-method signature="verifyDeleteBuzzPost()[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:59:43 IST" name="verifyDeleteBuzzPost" finished-at="2026-09-25T21:59:58 IST" duration-ms="15004" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyDeleteBuzzPost -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:25:47 IST" name="tearDown" finished-at="2026-09-25T21:25:52 IST" duration-ms="4639" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.neel.playwright.tests.DeleteBuzzPostTest@384ad17b]" started-at="2026-09-25T21:59:58 IST" name="tearDown" finished-at="2026-09-25T21:59:59 IST" duration-ms="823" status="PASS">
           <params>
             <param index="0">
               <value>
