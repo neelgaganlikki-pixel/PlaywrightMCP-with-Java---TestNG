@@ -1,0 +1,6 @@
+target/
+test-results/
+.playwright-mcp/
+*.log
+.vscode/
+.idea/
