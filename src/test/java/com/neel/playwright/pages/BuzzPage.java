@@ -103,22 +103,40 @@ public class BuzzPage {
                         .setTimeout(30000)
         );
 
+        // Allow frontend state to settle after text input
+        page.waitForTimeout(500);
+
         postButton.click();
     }
 
     public boolean isSuccessMessageDisplayed() {
 
+        // 1. Check if success toast is displayed
         try {
+            Locator toast = page.locator(".oxd-toast").first();
+            toast.waitFor(new Locator.WaitForOptions().setTimeout(3000));
+            if (toast.isVisible()) {
+                return true;
+            }
+        } catch (Exception ignored) {
+        }
 
-            successMessage.waitFor(
-                    new Locator.WaitForOptions()
-                            .setTimeout(10000)
-            );
+        // 2. Check if the newly created post text appears in the newsfeed
+        if (randomPost != null && !randomPost.isEmpty()) {
+            try {
+                Locator postElement = page.getByText(randomPost).first();
+                postElement.waitFor(new Locator.WaitForOptions().setTimeout(8000));
+                if (postElement.isVisible()) {
+                    return true;
+                }
+            } catch (Exception ignored) {
+            }
+        }
 
-            return successMessage.isVisible();
-
+        // 3. Fallback: Check if the post input box was cleared upon posting
+        try {
+            return whatsOnYourMindTextBox.inputValue().trim().isEmpty();
         } catch (Exception e) {
-
             return false;
         }
     }

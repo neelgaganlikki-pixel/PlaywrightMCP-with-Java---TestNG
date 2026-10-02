@@ -58,10 +58,10 @@ public class CreateBuzzPostTest extends BaseTest {
         // Click Post
         buzzPage.clickPostButton();
 
-        // Verify success message
+        // Verify post creation success
         Assert.assertTrue(
                 buzzPage.isSuccessMessageDisplayed(),
-                "Success message was not displayed after posting"
+                "Success message or posted content was not displayed after posting"
         );
     }
 }
