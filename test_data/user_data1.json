@@ -1,33 +1,33 @@
 {
-  "login": {
-    "username": "Admin",
-    "password": "admin123"
+  "employee": {
+    "last_name": "Wilson",
+    "date_of_birth": "1976-04-11",
+    "employee_id": "1853",
+    "marital_status": "Single",
+    "other_id": "70WRW2TN",
+    "license_expiry_date": "2029-23-11",
+    "middle_name": "William",
+    "driver_license_number": "5FTEHVOIXY",
+    "nationality": "Austrian",
+    "gender": "Male",
+    "first_name": "Daniel"
   },
   "photo": {
     "path": "test_data/employee_photo.png"
   },
-  "employee": {
-    "other_id": "6H73OSC2",
-    "marital_status": "Single",
-    "employee_id": "1609",
-    "date_of_birth": "2004-02-07",
-    "last_name": "Anderson",
-    "first_name": "David",
-    "gender": "Male",
-    "nationality": "Australian",
-    "driver_license_number": "Q10P5A5J79",
-    "middle_name": "Alexander",
-    "license_expiry_date": "2027-13-10"
-  },
-  "custom_fields": {
-    "test_field": "69Z9JVJA",
-    "blood_type": "B-"
+  "login": {
+    "username": "Admin",
+    "password": "admin123"
   },
   "employee_login": {
-    "password": "JkAuto2026X9m4",
     "create_login_details": true,
-    "status": "Enabled",
+    "password": "JkAuto2026X9m4",
+    "confirm_password": "JkAuto2026X9m4",
     "username": "JohnKing0442",
-    "confirm_password": "JkAuto2026X9m4"
+    "status": "Enabled"
+  },
+  "custom_fields": {
+    "blood_type": "AB+",
+    "test_field": "JEYH31KH"
   }
 }

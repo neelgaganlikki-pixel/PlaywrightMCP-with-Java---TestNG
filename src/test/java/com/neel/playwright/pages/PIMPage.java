@@ -3,6 +3,7 @@ package com.neel.playwright.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,6 +17,43 @@ public class PIMPage {
     public PIMPage(Page page) {
         this.page = page;
         this.toast = page.locator(".oxd-toast:visible");
+    }
+
+    public void deleteUserIfExists(String username) {
+        try {
+            System.out.println("Checking if user '" + username + "' already exists in Admin -> Users...");
+            page.locator("a[href='/web/index.php/admin/viewAdminModule']").click();
+            page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+            try {
+                page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+            } catch (Exception ignored) {
+            }
+            Locator usernameInput = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText("Username")).locator("input");
+            usernameInput.waitFor(new Locator.WaitForOptions().setTimeout(10000));
+            usernameInput.fill(username);
+            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search")).click();
+            page.waitForTimeout(1500);
+            try {
+                page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+            } catch (Exception ignored) {
+            }
+            Locator row = page.locator("div[role='row']").filter(new Locator.FilterOptions().setHasText(username)).first();
+            if (row.count() > 0 && row.isVisible()) {
+                System.out.println("Existing user '" + username + "' found. Deleting...");
+                row.locator(".bi-trash").click();
+                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Yes, Delete")).click();
+                try {
+                    page.locator(".oxd-toast:visible").waitFor(new Locator.WaitForOptions().setTimeout(5000));
+                } catch (Exception ignored) {
+                }
+                page.waitForTimeout(1500);
+                System.out.println("Existing user '" + username + "' deleted successfully.");
+            } else {
+                System.out.println("No existing user found for: " + username);
+            }
+        } catch (Exception e) {
+            System.out.println("deleteUserIfExists completed with notice: " + e.getMessage());
+        }
     }
 
     public void openEmployeeList() {
@@ -47,21 +85,48 @@ public class PIMPage {
     }
 
     public void save() {
+        System.out.println("Clicking Save button on URL: " + page.url());
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Save")).last().click();
+        page.waitForTimeout(1000);
+        Locator errors = page.locator(".oxd-input-field-error-message");
+        if (errors.count() > 0) {
+            System.err.println("Validation errors found after save: " + errors.allInnerTexts());
+        }
     }
 
     public void verifySuccessToast(String expectedText) {
-        toast.waitFor();
-        String text = toast.innerText().toLowerCase();
-        boolean valid = text.contains("success") && text.contains(expectedText.toLowerCase());
-        System.out.println("OrangeHRM toast [" + (valid ? "VALID" : "INVALID") + "]: " + text);
-        if (!valid) {
-            throw new AssertionError("Unexpected OrangeHRM toast: " + text);
+        System.out.println("Waiting for toast... current URL: " + page.url());
+        Locator errors = page.locator(".oxd-input-field-error-message");
+        if (errors.count() > 0) {
+            System.err.println("Validation errors present: " + errors.allInnerTexts());
+        }
+        try {
+            toast.waitFor(new Locator.WaitForOptions().setTimeout(10000));
+            String text = toast.innerText().toLowerCase();
+            boolean valid = text.contains("success") && text.contains(expectedText.toLowerCase());
+            System.out.println("OrangeHRM toast [" + (valid ? "VALID" : "INVALID") + "]: " + text);
+            if (!valid) {
+                throw new AssertionError("Unexpected OrangeHRM toast: " + text);
+            }
+        } catch (Exception e) {
+            System.err.println("Failed waiting for toast. Current URL: " + page.url());
+            if (errors.count() > 0) {
+                System.err.println("Validation errors preventing save: " + errors.allInnerTexts());
+            }
+            throw e;
         }
     }
 
     public void waitForPersonalDetails() {
-        fieldContainer("Other Id").locator("input").waitFor();
+        try {
+            page.waitForURL("**/pim/viewPersonalDetails/**", new Page.WaitForURLOptions().setTimeout(15000));
+        } catch (Exception ignored) {
+        }
+        try {
+            page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(10000));
+        } catch (Exception ignored) {
+        }
+        fieldContainer("Other Id").locator("input").waitFor(new Locator.WaitForOptions().setTimeout(15000));
     }
 
     public String selectRandomByLabel(String label) {
@@ -87,11 +152,19 @@ public class PIMPage {
     }
 
     public void fillPersonalDetails(String employeeId, String otherId, String license, String expiry, String dob) {
+        try {
+            page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+        } catch (Exception ignored) {
+        }
         inputByLabel("Employee Id").fill(employeeId);
         inputByLabel("Other Id").fill(otherId);
         inputByLabel("Driver's License Number").fill(license);
         inputByLabel("License Expiry Date").fill(expiry);
-        inputByLabel("Date of Birth").fill(dob);
+        inputByBirth("Date of Birth", dob);
+    }
+
+    private void inputByBirth(String label, String value) {
+        inputByLabel(label).fill(value);
     }
 
     public void selectByLabel(String label, String value) {
@@ -133,7 +206,15 @@ public class PIMPage {
     }
 
     private Locator fieldContainer(String label) {
-        return page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText(label)).first();
+        Locator container = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText(label)).first();
+        if (container.count() == 0) {
+            String alt = label.contains("'") ? label.replace("'", "’") : label.replace("’", "'");
+            container = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText(alt)).first();
+        }
+        if (container.count() == 0 && label.toLowerCase().contains("license")) {
+            container = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText("License Number")).first();
+        }
+        return container;
     }
 
     private Locator inputByLabel(String label) {

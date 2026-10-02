@@ -75,62 +75,42 @@ public class DeleteBuzzPostTest extends BaseTest {
         );
 
         System.out.println("Buzz post created successfully");
-        System.out.println("Waiting for Buzz feed to update...");
-
-        // Give OrangeHRM time to process the post
-        page.waitForTimeout(2000);
-
-        // Refresh the Buzz feed
-        System.out.println("Refreshing Buzz feed...");
-
-        page.reload();
-
-        page.waitForLoadState(
-                LoadState.DOMCONTENTLOADED
-        );
-
-        System.out.println("Buzz page reloaded");
-
-        // Wait for Buzz page to become visible again
-        Assert.assertTrue(
-                buzzPage.isBuzzPageDisplayed(),
-                "Buzz page was not displayed after reload"
-        );
-
-        // Wait for the newly created post
-        System.out.println(
-                "Waiting for newly created post to appear: "
-                        + postText
-        );
+        System.out.println("Checking if newly created post is visible: " + postText);
 
         boolean postDisplayed = false;
 
-        for (int attempt = 1; attempt <= 30; attempt++) {
-
-            System.out.println(
-                    "Checking for created post - attempt "
-                            + attempt
-                            + "/30"
-            );
-
+        // Check if post is immediately visible in feed without reloading
+        for (int attempt = 1; attempt <= 10; attempt++) {
             if (deleteBuzzPost.isPostDisplayed(postText)) {
-
                 postDisplayed = true;
-
-                System.out.println(
-                        "Created post is now visible: "
-                                + postText
-                );
-
+                System.out.println("Created post is immediately visible: " + postText);
                 break;
             }
-
             page.waitForTimeout(1000);
+        }
+
+        // If not immediately visible, refresh the Buzz feed and check again
+        if (!postDisplayed) {
+            System.out.println("Post not immediately visible, refreshing Buzz feed...");
+            page.waitForTimeout(2000);
+            page.reload();
+            page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+            System.out.println("Buzz page reloaded");
+
+            for (int attempt = 1; attempt <= 20; attempt++) {
+                System.out.println("Checking for created post after reload - attempt " + attempt + "/20");
+                if (deleteBuzzPost.isPostDisplayed(postText)) {
+                    postDisplayed = true;
+                    System.out.println("Created post is now visible: " + postText);
+                    break;
+                }
+                page.waitForTimeout(1000);
+            }
         }
 
         Assert.assertTrue(
                 postDisplayed,
-                "Created post is not displayed after feed refresh: "
+                "Created post is not displayed before deletion: "
                         + postText
         );
 

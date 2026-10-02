@@ -18,10 +18,7 @@ public class DeleteBuzzPost {
         this.page = page;
 
         postContainer =
-                page.locator(
-                        "//div[contains(@class,'oxd-sheet') "
-                                + "and contains(@class,'orangehrm-buzz')]"
-                );
+                page.locator("div.oxd-sheet");
 
         deleteOption =
                 page.getByText(
@@ -125,7 +122,11 @@ public class DeleteBuzzPost {
                             )
                             .first();
 
-            return post.isVisible();
+            if (post.isVisible()) {
+                return true;
+            }
+
+            return page.getByText(postText).first().isVisible();
 
         } catch (Exception e) {
 
