@@ -1,16 +1,16 @@
 {
   "employee": {
-    "last_name": "Wilson",
-    "date_of_birth": "1976-04-11",
-    "employee_id": "1853",
-    "marital_status": "Single",
-    "other_id": "70WRW2TN",
-    "license_expiry_date": "2029-23-11",
-    "middle_name": "William",
-    "driver_license_number": "5FTEHVOIXY",
-    "nationality": "Austrian",
-    "gender": "Male",
-    "first_name": "Daniel"
+    "last_name": "Taylor",
+    "date_of_birth": "1998-26-12",
+    "employee_id": "1129",
+    "marital_status": "Other",
+    "other_id": "Y57EQ6O7",
+    "license_expiry_date": "2027-01-04",
+    "middle_name": "Marie",
+    "driver_license_number": "FBNRVB5KDY",
+    "nationality": "Emirian",
+    "gender": "Female",
+    "first_name": "Emily"
   },
   "photo": {
     "path": "test_data/employee_photo.png"
@@ -27,7 +27,7 @@
     "status": "Enabled"
   },
   "custom_fields": {
-    "blood_type": "AB+",
-    "test_field": "JEYH31KH"
+    "blood_type": "O-",
+    "test_field": "BB0YCUBN"
   }
 }

@@ -79,31 +79,18 @@ public class DeleteBuzzPostTest extends BaseTest {
 
         boolean postDisplayed = false;
 
-        // Check if post is immediately visible in feed without reloading
-        for (int attempt = 1; attempt <= 10; attempt++) {
+        // Verify post presence in feed; reload periodically if read replica has not synced yet
+        for (int attempt = 1; attempt <= 20; attempt++) {
             if (deleteBuzzPost.isPostDisplayed(postText)) {
                 postDisplayed = true;
-                System.out.println("Created post is immediately visible: " + postText);
+                System.out.println("Created post is visible: " + postText);
                 break;
             }
-            page.waitForTimeout(1000);
-        }
-
-        // If not immediately visible, refresh the Buzz feed and check again
-        if (!postDisplayed) {
-            System.out.println("Post not immediately visible, refreshing Buzz feed...");
-            page.waitForTimeout(2000);
-            page.reload();
-            page.waitForLoadState(LoadState.DOMCONTENTLOADED);
-            System.out.println("Buzz page reloaded");
-
-            for (int attempt = 1; attempt <= 20; attempt++) {
-                System.out.println("Checking for created post after reload - attempt " + attempt + "/20");
-                if (deleteBuzzPost.isPostDisplayed(postText)) {
-                    postDisplayed = true;
-                    System.out.println("Created post is now visible: " + postText);
-                    break;
-                }
+            if (attempt % 4 == 0) {
+                System.out.println("Post not yet visible, refreshing Buzz feed (attempt " + attempt + "/20)...");
+                page.reload();
+                page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+            } else {
                 page.waitForTimeout(1000);
             }
         }

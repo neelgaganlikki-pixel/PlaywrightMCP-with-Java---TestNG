@@ -78,7 +78,7 @@ public class BuzzPage {
     }
 
     public void enterBuzzPost(String text) {
-
+        this.randomPost = text;
         whatsOnYourMindTextBox.waitFor(
                 new Locator.WaitForOptions()
                         .setTimeout(30000)
@@ -107,6 +107,9 @@ public class BuzzPage {
         page.waitForTimeout(500);
 
         postButton.click();
+
+        // Allow backend time to persist post
+        page.waitForTimeout(1500);
     }
 
     public boolean isSuccessMessageDisplayed() {
