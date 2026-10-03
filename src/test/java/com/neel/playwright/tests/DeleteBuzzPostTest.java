@@ -53,17 +53,17 @@ public class DeleteBuzzPostTest extends BaseTest {
                 "Buzz page was not loaded"
         );
 
+        // Allow feed state to settle after navigation
+        page.waitForTimeout(3000);
+
         // Open post box
         buzzPage.clickWhatsOnYourMindTextBox();
 
-        // Create unique post
-        String postText =
-                "Test Post for Deletion - "
-                        + System.currentTimeMillis();
+        // Create post using BuzzPage standard generator
+        buzzPage.enterRandomBuzzPost();
+        String postText = buzzPage.getRandomPost();
 
-        System.out.println("Creating Buzz post: " + postText);
-
-        buzzPage.enterBuzzPost(postText);
+        System.out.println("Creating Buzz post for deletion: " + postText);
 
         // Click Post
         buzzPage.clickPostButton();

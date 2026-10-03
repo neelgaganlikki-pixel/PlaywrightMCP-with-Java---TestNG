@@ -90,6 +90,10 @@ public class BuzzPage {
         enterBuzzPost(randomPost);
     }
 
+    public String getRandomPost() {
+        return randomPost;
+    }
+
     public void clickPostButton() {
 
         postButton.waitFor(
