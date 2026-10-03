@@ -30,8 +30,9 @@ public class PIMEmployeeTest extends BaseTest {
         pimPage.openEmployeeList();
         pimPage.openAddEmployee();
         pimPage.fillAddEmployee(data.firstName, data.middleName, data.lastName, data.employeeId, photo);
-        pimPage.createLoginDetails(EmployeeTestData.EMPLOYEE_USERNAME, EmployeeTestData.EMPLOYEE_PASSWORD);
+        String chosenUsername = pimPage.createLoginDetails(EmployeeTestData.EMPLOYEE_USERNAME, EmployeeTestData.EMPLOYEE_PASSWORD);
         pimPage.save();
+        data.employeeUsername = pimPage.getLastUsedUsername() != null ? pimPage.getLastUsedUsername() : chosenUsername;
         pimPage.verifySuccessToast("Successfully");
         pimPage.waitForPersonalDetails();
         data.nationality = pimPage.selectRandomByLabel("Nationality");

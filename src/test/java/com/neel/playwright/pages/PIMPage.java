@@ -13,10 +13,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PIMPage {
     private final Page page;
     private final Locator toast;
+    private String lastUsedUsername;
 
     public PIMPage(Page page) {
         this.page = page;
         this.toast = page.locator(".oxd-toast:visible");
+    }
+
+    public String getLastUsedUsername() {
+        return lastUsedUsername;
     }
 
     public void deleteUserIfExists(String username) {
@@ -25,23 +30,52 @@ public class PIMPage {
             page.locator("a[href='/web/index.php/admin/viewAdminModule']").click();
             page.waitForLoadState(LoadState.DOMCONTENTLOADED);
             try {
-                page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+                page.locator(".oxd-form-loader, .oxd-table-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
             } catch (Exception ignored) {
             }
             Locator usernameInput = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText("Username")).locator("input");
             usernameInput.waitFor(new Locator.WaitForOptions().setTimeout(10000));
             usernameInput.fill(username);
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search")).click();
-            page.waitForTimeout(1500);
+
             try {
-                page.locator(".oxd-form-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+                page.waitForResponse(
+                        resp -> resp.url().contains("/api/v2/admin/users") && "GET".equalsIgnoreCase(resp.request().method()),
+                        new Page.WaitForResponseOptions().setTimeout(8000),
+                        () -> page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search")).click()
+                );
+            } catch (Exception e) {
+                System.out.println("Search response wait notice: " + e.getMessage());
+            }
+
+            try {
+                page.locator(".oxd-form-loader, .oxd-table-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
             } catch (Exception ignored) {
             }
-            Locator row = page.locator("div[role='row']").filter(new Locator.FilterOptions().setHasText(username)).first();
+            page.waitForTimeout(1000);
+
+            Locator row = page.locator(".oxd-table-card").filter(new Locator.FilterOptions().setHasText(username)).first();
+            if (row.count() == 0) {
+                row = page.locator("div[role='row']").filter(new Locator.FilterOptions().setHasText(username)).first();
+            }
+
             if (row.count() > 0 && row.isVisible()) {
                 System.out.println("Existing user '" + username + "' found. Deleting...");
                 row.locator(".bi-trash").click();
-                page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Yes, Delete")).click();
+                try {
+                    page.waitForResponse(
+                            resp -> resp.url().contains("/api/v2/admin/users") && "DELETE".equalsIgnoreCase(resp.request().method()),
+                            new Page.WaitForResponseOptions().setTimeout(8000),
+                            () -> page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Yes, Delete")).click()
+                    );
+                } catch (Exception e) {
+                    try {
+                        Locator yesBtn = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Yes, Delete"));
+                        if (yesBtn.isVisible()) {
+                            yesBtn.click();
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
                 try {
                     page.locator(".oxd-toast:visible").waitFor(new Locator.WaitForOptions().setTimeout(5000));
                 } catch (Exception ignored) {
@@ -76,12 +110,28 @@ public class PIMPage {
         page.locator("input[type='file']").setInputFiles(photo);
     }
 
-    public void createLoginDetails(String username, String password) {
+    public String createLoginDetails(String username, String password) {
         page.locator(".oxd-switch-wrapper span").click();
-        inputByLabel("Username").fill(username);
+        Locator usernameInput = inputByLabel("Username");
+        usernameInput.fill(username);
         page.locator(".oxd-radio-wrapper").filter(new Locator.FilterOptions().setHasText("Enabled")).click();
         inputByLabel("Password").fill(password);
         inputByLabel("Confirm Password").fill(password);
+
+        page.waitForTimeout(1000);
+        Locator usernameGroup = fieldContainer("Username");
+        Locator errorMsg = usernameGroup.locator(".oxd-input-field-error-message");
+        String finalUsername = username;
+        if (errorMsg.isVisible() && errorMsg.innerText().toLowerCase().contains("already exists")) {
+            finalUsername = "JohnKing" + (System.currentTimeMillis() % 100000);
+            System.out.println("Username '" + username + "' already exists! Self-healing with fallback: " + finalUsername);
+            usernameInput.fill("");
+            usernameInput.fill(finalUsername);
+            inputByLabel("Confirm Password").click();
+            page.waitForTimeout(1000);
+        }
+        this.lastUsedUsername = finalUsername;
+        return finalUsername;
     }
 
     public void save() {
@@ -91,6 +141,21 @@ public class PIMPage {
         Locator errors = page.locator(".oxd-input-field-error-message");
         if (errors.count() > 0) {
             System.err.println("Validation errors found after save: " + errors.allInnerTexts());
+            Locator usernameGroup = fieldContainer("Username");
+            if (usernameGroup.count() > 0) {
+                Locator userError = usernameGroup.locator(".oxd-input-field-error-message");
+                if (userError.isVisible() && userError.innerText().toLowerCase().contains("already exists")) {
+                    String fallback = "JohnKing" + (System.currentTimeMillis() % 100000);
+                    System.out.println("Auto-resolving duplicate username on save: " + fallback);
+                    this.lastUsedUsername = fallback;
+                    Locator userInput = usernameGroup.locator("input");
+                    userInput.fill("");
+                    userInput.fill(fallback);
+                    page.waitForTimeout(500);
+                    page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Save")).last().click();
+                    page.waitForTimeout(1000);
+                }
+            }
         }
     }
 

@@ -16,6 +16,7 @@ public class EmployeeTestData {
     public String dateOfBirth;
     public String bloodType;
     public String testField;
+    public String employeeUsername = EMPLOYEE_USERNAME;
 
     public static final String ADMIN_USERNAME = "Admin";
     public static final String ADMIN_PASSWORD = "admin123";
@@ -31,7 +32,7 @@ public class EmployeeTestData {
                         Map.entry("other_id", otherId), Map.entry("driver_license_number", driverLicenseNumber),
                         Map.entry("license_expiry_date", licenseExpiryDate), Map.entry("nationality", nationality),
                         Map.entry("marital_status", maritalStatus), Map.entry("date_of_birth", dateOfBirth)),
-                "employee_login", Map.of("create_login_details", true, "username", EMPLOYEE_USERNAME,
+                "employee_login", Map.of("create_login_details", true, "username", employeeUsername != null ? employeeUsername : EMPLOYEE_USERNAME,
                         "status", "Enabled", "password", EMPLOYEE_PASSWORD, "confirm_password", EMPLOYEE_PASSWORD),
                 "custom_fields", Map.of("blood_type", bloodType, "test_field", testField),
                 "photo", Map.of("path", PHOTO_PATH));
