@@ -1,5 +1,6 @@
 package com.neel.playwright.tests;
 
+import com.microsoft.playwright.Locator;
 import com.neel.playwright.base.BaseTest;
 import com.neel.playwright.pages.BuzzPage;
 import com.neel.playwright.pages.LoginPage;

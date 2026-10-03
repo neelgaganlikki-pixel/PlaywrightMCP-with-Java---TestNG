@@ -31,12 +31,7 @@ public class BuzzPage {
                 page.getByPlaceholder("What's on your mind?");
 
         this.postButton =
-                page.getByRole(
-                        AriaRole.BUTTON,
-                        new Page.GetByRoleOptions()
-                                .setName("Post")
-                                .setExact(true)
-                );
+                page.locator("button[type='submit']");
 
         this.successMessage =
                 page.locator(".oxd-toast");
@@ -83,7 +78,6 @@ public class BuzzPage {
                 new Locator.WaitForOptions()
                         .setTimeout(30000)
         );
-
         whatsOnYourMindTextBox.fill(text);
     }
 
@@ -103,13 +97,9 @@ public class BuzzPage {
                         .setTimeout(30000)
         );
 
-        // Allow frontend state to settle after text input
         page.waitForTimeout(500);
-
         postButton.click();
-
-        // Allow backend time to persist post
-        page.waitForTimeout(1500);
+        page.waitForTimeout(3000);
     }
 
     public boolean isSuccessMessageDisplayed() {
