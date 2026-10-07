@@ -1,33 +1,33 @@
 {
-  "employee": {
-    "nationality": "Djibouti",
-    "gender": "Female",
-    "first_name": "Sarah",
-    "last_name": "Parker",
-    "date_of_birth": "1972-24-01",
-    "employee_id": "6474",
-    "marital_status": "Married",
-    "other_id": "B1IOH2SR",
-    "license_expiry_date": "2027-09-05",
-    "middle_name": "Marie",
-    "driver_license_number": "SB6P08M09L"
-  },
   "photo": {
     "path": "test_data/employee_photo.png"
   },
-  "login": {
-    "username": "Admin",
-    "password": "admin123"
-  },
-  "employee_login": {
-    "status": "Enabled",
-    "create_login_details": true,
-    "password": "JkAuto2026X9m4",
-    "confirm_password": "JkAuto2026X9m4",
-    "username": "JohnKing0442"
+  "employee": {
+    "date_of_birth": "1979-28-08",
+    "last_name": "Anderson",
+    "first_name": "Michael",
+    "gender": "Male",
+    "nationality": "German",
+    "driver_license_number": "33KVNPNN3W",
+    "middle_name": "Grace",
+    "license_expiry_date": "2029-15-09",
+    "other_id": "QZZSXSZP",
+    "marital_status": "Married",
+    "employee_id": "7977"
   },
   "custom_fields": {
-    "test_field": "GDAHPO3X",
+    "test_field": "L475C96L",
     "blood_type": "AB+"
+  },
+  "employee_login": {
+    "create_login_details": true,
+    "status": "Enabled",
+    "username": "JohnKing0442",
+    "confirm_password": "JkAuto2026X9m4",
+    "password": "JkAuto2026X9m4"
+  },
+  "login": {
+    "password": "admin123",
+    "username": "Admin"
   }
 }

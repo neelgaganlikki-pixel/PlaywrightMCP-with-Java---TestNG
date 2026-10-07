@@ -17,12 +17,42 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/**
+ * Thread-safe BaseTest supporting parallel execution using ThreadLocal.
+ * Manages independent Playwright, Browser, Context, and Page lifecycles per thread.
+ */
 public class BaseTest {
 
+    private static final ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
+    private static final ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
+    private static final ThreadLocal<BrowserContext> tlContext = new ThreadLocal<>();
+    private static final ThreadLocal<Page> tlPage = new ThreadLocal<>();
+
+    // Preserved for direct field access compatibility across test classes
     protected Playwright playwright;
     protected Browser browser;
     protected BrowserContext context;
     protected Page page;
+
+    public Page getPage() {
+        return tlPage.get();
+    }
+
+    public static Page getThreadLocalPage() {
+        return tlPage.get();
+    }
+
+    public BrowserContext getContext() {
+        return tlContext.get();
+    }
+
+    public Browser getBrowser() {
+        return tlBrowser.get();
+    }
+
+    public Playwright getPlaywright() {
+        return tlPlaywright.get();
+    }
 
     @BeforeSuite(alwaysRun = true)
     public void cleanVideosBeforeSuite() {
@@ -45,60 +75,44 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
+        Playwright pw = Playwright.create();
+        tlPlaywright.set(pw);
+        this.playwright = pw;
 
-        playwright = Playwright.create();
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
+        Browser br = pw.chromium().launch(
+                new BrowserType.LaunchOptions()
+                        .setHeadless(headless)
+                        .setSlowMo(0)
+        );
+        tlBrowser.set(br);
+        this.browser = br;
 
-        /*
-         * Default: headed mode.
-         *
-         * Local headed:
-         * mvn clean test -Dsurefire.suiteXmlFiles=testng.xml -Dheadless=false
-         *
-         * Jenkins:
-         * mvn clean test -Dsurefire.suiteXmlFiles=testng.xml -Dheadless=true
-         */
+        BrowserContext ctx = br.newContext(
+                new Browser.NewContextOptions()
+                        .setViewportSize(1280, 720)
+                        .setDeviceScaleFactor(1)
+                        .setRecordVideoSize(1920, 1080)
+                        .setRecordVideoDir(Paths.get("test-results", "videos"))
+        );
+        tlContext.set(ctx);
+        this.context = ctx;
 
-        boolean headless =
-                Boolean.parseBoolean(
-                        System.getProperty(
-                                "headless",
-                                "true"
-                        )
-                );
-
-        browser =
-                playwright.chromium().launch(
-                        new BrowserType.LaunchOptions()
-                                .setHeadless(headless)
-                                .setSlowMo(0)
-                );
-
-        context =
-                browser.newContext(
-                        new Browser.NewContextOptions()
-                                .setViewportSize(1280, 720)
-                                .setDeviceScaleFactor(1)
-                                .setRecordVideoSize(1920, 1080)
-                                .setRecordVideoDir(
-                                        Paths.get(
-                                                "test-results/videos"
-                                        )
-                                )
-                );
-
-        page = context.newPage();
-
-        // Default locator/action timeout
-        page.setDefaultTimeout(30000);
-
-        // Default navigation timeout
-        page.setDefaultNavigationTimeout(60000);
+        Page pg = ctx.newPage();
+        pg.setDefaultTimeout(30000);
+        pg.setDefaultNavigationTimeout(60000);
+        tlPage.set(pg);
+        this.page = pg;
     }
 
     @AfterMethod
     public void tearDown(ITestResult result) {
+        Page pg = tlPage.get();
+        BrowserContext ctx = tlContext.get();
+        Browser br = tlBrowser.get();
+        Playwright pw = tlPlaywright.get();
 
-        Video video = (page != null) ? page.video() : null;
+        Video video = (pg != null) ? pg.video() : null;
         Path originalVideoPath = null;
         if (video != null) {
             try {
@@ -108,16 +122,16 @@ public class BaseTest {
         }
 
         // Close page and context first to finalize video recording
-        if (page != null) {
+        if (pg != null) {
             try {
-                page.close();
+                pg.close();
             } catch (Exception ignored) {
             }
         }
 
-        if (context != null) {
+        if (ctx != null) {
             try {
-                context.close();
+                ctx.close();
             } catch (Exception e) {
                 System.out.println("Could not close context: " + e.getMessage());
             }
@@ -163,20 +177,26 @@ public class BaseTest {
             }
         }
 
-        if (browser != null) {
+        if (br != null) {
             try {
-                browser.close();
+                br.close();
             } catch (Exception e) {
                 System.out.println("Could not close browser: " + e.getMessage());
             }
         }
 
-        if (playwright != null) {
+        if (pw != null) {
             try {
-                playwright.close();
+                pw.close();
             } catch (Exception e) {
                 System.out.println("Could not close Playwright: " + e.getMessage());
             }
         }
+
+        // Clear ThreadLocal variables to prevent memory leaks across threads
+        tlPage.remove();
+        tlContext.remove();
+        tlBrowser.remove();
+        tlPlaywright.remove();
     }
 }

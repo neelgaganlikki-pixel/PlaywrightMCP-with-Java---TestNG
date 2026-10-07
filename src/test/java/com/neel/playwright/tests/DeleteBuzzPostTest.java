@@ -7,12 +7,23 @@ import com.neel.playwright.pages.LoginPage;
 
 import com.microsoft.playwright.options.LoadState;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("OrangeHRM Enterprise Portal")
+@Feature("Buzz Social Feed")
 public class DeleteBuzzPostTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify deleting specific post on OrangeHRM Buzz feed")
+    @Story("Delete Buzz Post")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Creates a dedicated test post, locates its contextual action menu, triggers post deletion, and verifies feed removal.")
     public void verifyDeleteBuzzPost() {
 
         LoginPage loginPage =

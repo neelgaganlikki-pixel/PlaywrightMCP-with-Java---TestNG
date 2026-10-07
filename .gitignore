@@ -6,3 +6,5 @@ test-results/
 .idea/
 .env*
 .jenkins-config
+.allure/
+allure-results/

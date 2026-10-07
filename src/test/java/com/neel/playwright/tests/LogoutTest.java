@@ -4,12 +4,23 @@ import com.neel.playwright.base.BaseTest;
 import com.neel.playwright.pages.LoginPage;
 import com.neel.playwright.pages.LogoutPage;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("OrangeHRM Enterprise Portal")
+@Feature("Authentication & Access")
 public class LogoutTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify OrangeHRM logout flow via user profile dropdown")
+    @Story("User Session Termination")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verifies authenticated session teardown and redirection to login page upon clicking logout.")
     public void verifyOrangeHRMLogout() {
 
         LoginPage loginPage = new LoginPage(page);

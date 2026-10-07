@@ -5,12 +5,23 @@ import com.neel.playwright.base.BaseTest;
 import com.neel.playwright.pages.BuzzPage;
 import com.neel.playwright.pages.LoginPage;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("OrangeHRM Enterprise Portal")
+@Feature("Buzz Social Feed")
 public class CreateBuzzPostTest extends BaseTest {
 
-    @Test
+    @Test(description = "Verify publishing new post on OrangeHRM Buzz feed")
+    @Story("Publish Buzz Post")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Creates and publishes a timestamped status update to the Buzz newsfeed and asserts post visibility.")
     public void verifyCreateBuzzPost() {
 
         LoginPage loginPage =

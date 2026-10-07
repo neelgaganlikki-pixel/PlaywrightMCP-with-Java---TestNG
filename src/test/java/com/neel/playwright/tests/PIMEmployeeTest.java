@@ -6,14 +6,26 @@ import com.neel.playwright.pages.PIMPage;
 import com.neel.playwright.utils.EmployeeTestData;
 import com.neel.playwright.utils.JsonUtils;
 import com.neel.playwright.utils.TestDataGenerator;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@Epic("OrangeHRM Enterprise Portal")
+@Feature("PIM - Employee Management")
 public class PIMEmployeeTest extends BaseTest {
-    @Test
+
+    @Test(description = "Verify end-to-end employee lifecycle: create, photo upload, personal details, and deletion")
+    @Story("Complete Employee Lifecycle")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Generates dynamic user data, verifies Admin Users avoid duplicates, adds employee, uploads photo, fills personal details, saves, and deletes record.")
     public void createVerifyAndDeleteEmployee() throws Exception {
         EmployeeTestData data = TestDataGenerator.generate();
         Path photo = Path.of(EmployeeTestData.PHOTO_PATH);

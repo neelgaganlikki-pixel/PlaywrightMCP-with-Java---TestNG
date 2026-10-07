@@ -2,7 +2,12 @@
 
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Playwright Automation Suite" parallel="false">
+<suite name="Playwright Automation Suite" parallel="classes" thread-count="3">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="com.neel.playwright.listeners.AllureTestListener"/>
+    </listeners>
 
     <test name="Playwright Tests">
 

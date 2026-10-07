@@ -5,6 +5,12 @@ import com.neel.playwright.base.BaseTest;
 import com.neel.playwright.pages.LogoutPage;
 import com.neel.playwright.pages.PIMPage;
 import com.neel.playwright.utils.SelfHealingEngine;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,12 +24,17 @@ import java.util.List;
  * Verifies that broken primary locators are dynamically healed using fallback candidates,
  * cached in memory, persisted to JSON, and logged via the self-healing telemetry engine.
  */
+@Epic("OrangeHRM Enterprise Portal")
+@Feature("Resilient Automation Framework")
 public class SelfHealingTest extends BaseTest {
 
     private static final String LOGIN_URL =
             "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
     @Test(description = "Verify Enterprise Self-Healing Engine recovers from broken locators across end-to-end user journey")
+    @Story("Dynamic Selector Healing & Caching")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verifies the self-healing engine detects broken primary selectors, applies heuristic fallbacks, and persists healed locators to cache.")
     public void testSelfHealingEngineWorkflow() {
         SelfHealingEngine engine = SelfHealingEngine.getInstance();
         int initialHealingCount = engine.getHealingCount();
