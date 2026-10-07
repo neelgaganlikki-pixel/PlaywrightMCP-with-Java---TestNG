@@ -25,9 +25,9 @@ This report documents the architectural overhaul, stability enhancements, and pe
 ```mermaid
 xychart-beta
     title "Test Pass Count Across Recent Jenkins Builds"
-    x-axis ["Build #255 (Before Fixes)", "Build #256 (Self-Healing Added)", "Build #257 (Stabilized Pipeline)"]
+    x-axis ["Build #255 (Before Fixes)", "Build #256 (Self-Healing Added)", "Build #257 (Stabilized Pipeline)", "Build #258 (Allure & Concurrency Push)"]
     y-axis "Tests Passed" 0 --> 7
-    bar [3, 6, 6]
+    bar [3, 6, 6, 6]
 ```
 
 ### Build Run Log Matrix
@@ -36,7 +36,8 @@ xychart-beta
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **#255** | Manual / Push | `55e609d` | 5 | 3 | **2** | 145.0s | **FAILURE** | `LogoutTest` (dropdown avatar click timeout) & `PIMEmployeeTest` (SPA route collision) |
 | **#256** | Git Push | `9fa6fe9` | 6 | **6** | **0** | 695.4s | **SUCCESS** | Added `SelfHealingEngine`, `BasePage`, and `SelfHealingTest`; 4 locators healed |
-| **#257** | Clean Run | `9fa6fe9` | 6 | **6** | **0** | **161.4s** | **SUCCESS** | Fully stabilized CI execution with zero failures and cached locators |
+| **#257** | Clean Run | `9fa6fe9` | 6 | **6** | **0** | 161.4s | **SUCCESS** | Fully stabilized CI execution with zero failures and cached locators |
+| **#258** | GitHub Push Webhook | `b2f8bc5` | 6 | **6** | **0** | **149.2s** | **SUCCESS** | Automated webhook trigger; Allure test listeners & ThreadLocal parallel verified in CI |
 
 ---
 
@@ -64,9 +65,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Total Suite Execution Duration (Seconds - Lower is Better)"
-    x-axis ["Sequential (Before ThreadLocal)", "Parallel (After ThreadLocal, 3 Threads)"]
+    x-axis ["Sequential (Before ThreadLocal)", "Parallel (Run 1, 3 Threads)", "Parallel (Optimized Rerun)"]
     y-axis "Duration (Seconds)" 0 --> 200
-    bar [182.7, 148.0]
+    bar [182.7, 148.0, 106.5]
 ```
 
 ### Multi-Thread Concurrency Timeline (148s Suite Run)
@@ -134,15 +135,56 @@ All 4 recoveries were cached in memory and serialized to [`test-results/healed_l
 
 * [`com.neel.playwright.utils.SelfHealingEngine`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/utils/SelfHealingEngine.java): Reentrant-locked thread-safe singleton managing locator fallback resolution, persistence, and telemetry.
 * [`com.neel.playwright.pages.BasePage`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/pages/BasePage.java): Reusable base page with self-healing primitives (`healClick`, `healFill`, `healGetText`, `healIsVisible`, `healWaitFor`).
-* [`com.neel.playwright.base.BaseTest`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/base/BaseTest.java): ThreadLocal management of `Playwright`, `Browser`, `BrowserContext`, and `Page` with auto-deletion of video files on passed tests.
+* [`com.neel.playwright.base.BaseTest`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/base/BaseTest.java): ThreadLocal management of `Playwright`, `Browser`, `BrowserContext`, and `Page` with auto-deletion of video files on passed tests and static `getThreadLocalPage()` exposure.
+* [`com.neel.playwright.listeners.AllureTestListener`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/listeners/AllureTestListener.java): Automated listener taking full-page `.png` screenshots on failure and embedding dynamic [`healed_locators.json`](file:///d:/Automation%20Testing/Playwright-Java/test-results/healed_locators.json) into test reports.
 * [`com.neel.playwright.tests.SelfHealingTest`](file:///d:/Automation%20Testing/Playwright-Java/src/test/java/com/neel/playwright/tests/SelfHealingTest.java): Comprehensive single test case demonstrating dynamic recovery from broken locators.
-* [`testng.xml`](file:///d:/Automation%20Testing/Playwright-Java/testng.xml): Suite configuration updated to `parallel="classes" thread-count="3"`.
+* [`testng.xml`](file:///d:/Automation%20Testing/Playwright-Java/testng.xml): Suite configuration updated to `parallel="classes" thread-count="3"` with registered Allure listeners.
+* [`pom.xml`](file:///d:/Automation%20Testing/Playwright-Java/pom.xml): Integrated `allure-testng:2.29.0` and `allure-maven:2.15.2` for interactive reporting.
 
 ---
 
-## 6. Recommendations for Ongoing Maintenance
+## 6. Allure Interactive Reporting Framework
+
+Allure replaces legacy static HTML reports with a modern, interactive web dashboard featuring business domain categorization and multi-threaded timeline execution graphs.
+
+### Key Capabilities Configured:
+1. **Behavioral Domain Hierarchy (BDD):** Tests are organized by business value rather than Java package trees:
+   * **Epic:** `OrangeHRM Enterprise Portal`
+   * **Features:** `Authentication & Access`, `Buzz Social Feed`, `PIM - Employee Management`, `Resilient Automation Framework`
+   * **Stories:** `Admin Login Flow`, `Publish Buzz Post`, `Delete Buzz Post`, `Complete Employee Lifecycle`, `Dynamic Selector Healing & Caching`
+2. **Automated Diagnostic Attachments:**
+   * Full-page failure screenshots (`image/png`) captured dynamically on test failure.
+   * Runtime self-healing cache ([`healed_locators.json`](file:///d:/Automation%20Testing/Playwright-Java/test-results/healed_locators.json)) attached as structured JSON artifacts.
+3. **Interactive Launch:**
+   * Generated report folder: [`target/site/allure-maven-plugin/`](file:///d:/Automation%20Testing/Playwright-Java/target/site/allure-maven-plugin/)
+   * Start local reporting server via: `mvn allure:serve`
+
+---
+
+## 7. Scheduled Background Automations (Antigravity Sidecars)
+
+Configured persistent background cron automations operating in the local timezone (`Asia/Kolkata`):
+
+| Automation | Cadence / Cron | Actions & Responsibilities | Configuration File |
+| :--- | :--- | :--- | :--- |
+| **Weekday Morning Test Suite** | `CRON_TZ=Asia/Kolkata 0 9 * * 1-5`<br>(Weekdays at 9:00 AM IST) | Navigates to project, runs `mvn test -Dheadless=true`, parses results and healed locators, and drafts test summary. | [`sidecar.json`](file:///C:/Users/NEELGAGAN%20B%20R/.gemini/config/sidecars/weekday-test-suite-run/sidecar.json) |
+| **Hourly Jenkins Build Monitor** | `CRON_TZ=Asia/Kolkata 0 * * * *`<br>(Every hour at minute 0) | Checks `http://localhost:8080` for job `PlaywrightMCP--(Java-TestNG)`. If broken, analyzes logs and alerts `neelgaganat97@gmail.com`. | [`sidecar.json`](file:///C:/Users/NEELGAGAN%20B%20R/.gemini/config/sidecars/hourly-jenkins-monitor/sidecar.json) |
+
+---
+
+## 8. Executive PowerPoint Presentation Artifacts
+
+Generated an 8-slide executive deck in [`Playwright_Self_Healing_Report.pptx`](file:///d:/Automation%20Testing/Playwright-Java/Playwright_Self_Healing_Report.pptx) (303 KB) featuring 4 custom dark-mode analytical charts:
+* **Slide 3:** *Self-Healing Strategy Distribution Donut Chart* (100% recovery across 4 broken locators).
+* **Slide 5:** *Execution Duration Benchmark Clustered Bar Chart* (182.7s vs 148.0s vs 106.5s comparison, -42% speedup).
+* **Slide 6:** *Critical Path Analysis Duration Bar Chart* (11.4s to 30.6s ranking across all 6 test classes).
+* **Slide 7:** *Host Resource Allocation Chart* (AMD Ryzen 5 7530U & 16GB RAM capacity margins).
+
+---
+
+## 9. Recommendations for Ongoing Maintenance
 
 1. **Periodic Locator Sync:** Review [`test-results/healed_locators.json`](file:///d:/Automation%20Testing/Playwright-Java/test-results/healed_locators.json) and update page object primary selectors with verified fallbacks to eliminate runtime fallback search overhead.
-2. **Central Configuration:** Extract base URLs and admin credentials into a central `config.properties` file.
+2. **Central Configuration:** Extract base URLs and admin credentials into a central `config.properties` file for staging/QA switching.
 3. **Structured Logging:** Add Logback (`ch.qos.logback:logback-classic`) to eliminate SLF4J warnings and stream timestamped logs to file artifacts.
-4. **Failure Screenshots:** In `BaseTest.tearDown()`, capture full-page `.png` screenshots on failure alongside video artifacts for instantaneous visual triage.
+4. **Allure Historical Trend Retention:** In Jenkins, archive `allure-results` across builds to unlock historical flakiness curves and duration regression charts.
