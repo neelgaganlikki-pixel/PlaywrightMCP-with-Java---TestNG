@@ -26,7 +26,6 @@ public class PIMEmployeeTest extends BaseTest {
         loginPage.enterPassword(EmployeeTestData.ADMIN_PASSWORD);
         loginPage.clickLogin();
         pimPage.deleteUserIfExists(EmployeeTestData.EMPLOYEE_USERNAME);
-        page.locator("a[href='/web/index.php/pim/viewPimModule']").click();
         pimPage.openEmployeeList();
         pimPage.openAddEmployee();
         pimPage.fillAddEmployee(data.firstName, data.middleName, data.lastName, data.employeeId, photo);

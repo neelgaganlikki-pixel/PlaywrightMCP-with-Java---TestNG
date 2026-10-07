@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PIMPage {
-    private final Page page;
+public class PIMPage extends BasePage {
     private final Locator toast;
     private String lastUsedUsername;
 
     public PIMPage(Page page) {
-        this.page = page;
+        super(page);
         this.toast = page.locator(".oxd-toast:visible");
     }
 
@@ -27,14 +26,14 @@ public class PIMPage {
     public void deleteUserIfExists(String username) {
         try {
             System.out.println("Checking if user '" + username + "' already exists in Admin -> Users...");
-            page.locator("a[href='/web/index.php/admin/viewAdminModule']").click();
-            page.waitForLoadState(LoadState.DOMCONTENTLOADED);
+            healClick("Admin Navigation Menu", "a[href*='viewAdminModule']", List.of("//span[text()='Admin']/..", "a:has-text('Admin')"), 15000);
+            page.waitForURL("**/admin/**", new Page.WaitForURLOptions().setTimeout(20000));
             try {
-                page.locator(".oxd-form-loader, .oxd-table-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(5000));
+                page.locator(".oxd-form-loader, .oxd-table-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(8000));
             } catch (Exception ignored) {
             }
             Locator usernameInput = page.locator(".oxd-input-group").filter(new Locator.FilterOptions().setHasText("Username")).locator("input");
-            usernameInput.waitFor(new Locator.WaitForOptions().setTimeout(10000));
+            usernameInput.waitFor(new Locator.WaitForOptions().setTimeout(15000));
             usernameInput.fill(username);
 
             try {
@@ -92,14 +91,19 @@ public class PIMPage {
 
     public void openEmployeeList() {
         if (!page.url().contains("/pim/viewEmployeeList")) {
-            page.locator("a[href='/web/index.php/pim/viewPimModule']").click();
+            healClick("PIM Navigation Menu", "a[href*='viewPimModule']", List.of("//span[text()='PIM']/..", "a:has-text('PIM')"), 15000);
+            page.waitForURL("**/pim/**", new Page.WaitForURLOptions().setTimeout(20000));
         }
-        page.getByText("Employee Information", new Page.GetByTextOptions().setExact(true)).waitFor();
+        try {
+            page.locator(".oxd-form-loader, .oxd-table-loader").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.HIDDEN).setTimeout(8000));
+        } catch (Exception ignored) {
+        }
+        healWaitFor("Employee Information Header", "h5:has-text('Employee Information')", List.of(".oxd-table-filter-title", "button:has-text('Add')", "a:has-text('Employee List')"), 25000);
     }
 
     public void openAddEmployee() {
-        page.getByText("Add Employee", new Page.GetByTextOptions().setExact(true)).click();
-        page.locator("input[name='firstName']").waitFor();
+        healClick("Add Employee Tab", "a:has-text('Add Employee')", List.of("button:has-text('Add')", "//button[contains(., 'Add')]", ".orangehrm-header-container button"), 15000);
+        healWaitFor("First Name Field", "input[name='firstName']", List.of("input[placeholder='First Name']", ".orangehrm-firstname input"), 25000);
     }
 
     public void fillAddEmployee(String firstName, String middleName, String lastName, String employeeId, Path photo) {
