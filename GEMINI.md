@@ -1,6 +1,6 @@
 # Automation Ecosystem Repositories
 
-This project (`PlaywrightMCP-with-Java---TestNG`) is part of a 5-pillar automation testing suite.
+This project (`PlaywrightMCP-with-Java---TestNG`) is part of a 6-pillar automation testing suite.
 
 ## 📦 Automation Repositories Overview
 
@@ -33,6 +33,12 @@ This project (`PlaywrightMCP-with-Java---TestNG`) is part of a 5-pillar automati
    * **Local Path:** `D:\Automation Testing\Playwright Python Bdd`
    * **Stack:** Python, Playwright, Behave (BDD), Gherkin
    * **Jenkins Job:** `Playwright-Python-BDD`
+
+6. **Database Testing (MariaDB / SQL):**
+   * **Repository:** `https://github.com/neelgaganlikki-pixel/Database-Testing-.git`
+   * **Local Path:** `D:\Automation Testing\DataBase Testing`
+   * **Stack:** Python, Pytest, MariaDB / SQL, Docker
+   * **Jenkins Job:** `Database Testing`
 
 ## ⚙️ Environment Standards
 * **AUT:** OrangeHRM Open-Source Demo Platform (`https://opensource-demo.orangehrmlive.com/`)
